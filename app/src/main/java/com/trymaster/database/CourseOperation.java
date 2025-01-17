@@ -16,11 +16,11 @@ public class CourseOperation
 		database = dbHelper.getWritableDatabase();
 	}
 	
-	public long createCourse(Course course) {
+	public long createCourse(String title,String desc,String src) {
 		ContentValues values = new ContentValues();
-		values.put("title", course.getTitle());
-		values.put("description", course.getDescription());
-		values.put("video_url", course.getVideoUrl());
+		values.put("title", title);
+		values.put("description", desc);
+		values.put("video_url", src);
 		return database.insert("courses", null, values);
 	}
 
