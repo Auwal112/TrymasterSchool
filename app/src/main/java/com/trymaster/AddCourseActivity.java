@@ -23,7 +23,7 @@ public class AddCourseActivity extends AppCompatActivity
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.add_course_view);
+		setContentView(R.layout.main_view);
 		
 		title=findViewById(R.id.title);
 		description=findViewById(R.id.description);
