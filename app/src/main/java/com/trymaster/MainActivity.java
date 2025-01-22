@@ -10,8 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.trymaster.adapter.CourseAdapter;
 import com.trymaster.database.CourseOperation;
 import com.trymaster.database.Course;
+import android.widget.*;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements CourseAdapter.OnCourseListener
 {
 	ImageView adsBanner;
 	TextView adsDescription;
@@ -32,12 +33,27 @@ public class MainActivity extends AppCompatActivity
 
 		// Get courses from database
 		CourseOperation courses = new CourseOperation(this);
-		List<Course> courseList=courses.getAllCourses();
-		//courseList.add(courses.getCourse(1));
+		//List<Course> courseList=courses.getAllCourses();
+		List<Course> courseList=new ArrayList<>();
+		Course c=new Course();
+		c.setDescription("I am best");
+		c.setTitle("from nowhere");
+		courseList.add(c);
 
-		CourseAdapter courseAdapter = new CourseAdapter(courseList);
+		CourseAdapter courseAdapter = new CourseAdapter(courseList,this);
 		courseRecyclerView.setAdapter(courseAdapter);
 		courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+	
+		}
+	//respond to click when recyler item is beign click
+	@Override
+	public void onCourseClick(int position)
+	{
+		// TODO: Implement this method
+		Toast.makeText(this,"hii", Toast.LENGTH_SHORT).show();
+        //toast.show();
 	}
+	
+	
 	
 }
