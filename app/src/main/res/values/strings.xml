@@ -12,4 +12,21 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+	
+	<!-- 
+		String related to
+		Course topic and quiz  -->
+		<string name="course">
+			Intro to Programming\n
+			Get prepared to embark into programming journey
+		</string>
+		<string name="topic">
+			History of computer,Learn basic history of computer and some issue about it\n
+			Digital computer,Learn about building block of all digital computer\n
+			Machine language,Learn the language that a hardware understand\n
+			assembly language,Learn basic of assebly language\n
+			Coming of Compiler,Assembly language is hard\n
+		</string>
+		
+		
 </resources>

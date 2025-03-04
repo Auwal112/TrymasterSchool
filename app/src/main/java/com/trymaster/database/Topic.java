@@ -3,7 +3,20 @@ package com.trymaster.database;
 public class Topic
 {
 	private int id,course_id;
-	private String title,goal;
+	private String title,goal,vedioSource;
+
+	
+
+	public void setVedioSource(String vedioSource)
+	{
+		this.vedioSource = vedioSource;
+	}
+
+	public String getVedioSource()
+	{
+		return vedioSource;
+	}
+	
 
 
 	public void setId(int id)

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#FFFFFF">
+
+	
+
+	<TextView
+		android:id="@+id/video_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="24sp"
+		android:textStyle="bold"
+		android:text="Video Title"/>
+
+	<TextView
+		android:id="@+id/video_description"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		android:layout_marginTop="8dp"
+		android:text="Video description goes here..."/>
+
+	<TextView
+		android:id="@+id/tutorial_objectives_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:layout_marginTop="16dp"
+		android:text="Tutorial Objectives"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/objective_1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="16sp"
+			android:text="Objective 1: Learn the basics of..."/>
+
+		<TextView
+			android:id="@+id/objective_2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="16sp"
+			android:layout_marginTop="8dp"
+			android:text="Objective 2: Understand the concepts of..."/>
+
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/course_progress_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:layout_marginTop="16dp"
+		android:text="Course Progress"/>
+
+	<ProgressBar
+		android:id="@+id/course_progress_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:progress="100"/>
+
+	<Button
+		android:id="@+id/start_button"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Click me to start"
+		android:layout_marginTop="16dp"/>
+
+</LinearLayout>
+
+
+
+

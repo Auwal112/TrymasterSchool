@@ -2,6 +2,7 @@ package com.trymaster.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.appcompat.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -9,9 +10,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	private static final int DATABASE_VERSION = 1;
 
 	public SQLiteDatabase db;
-	
+	Context ctx;
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		ctx=context;
 	}
 	public SQLiteDatabase getDb(){
 		
@@ -32,15 +34,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		db.execSQL("CREATE TABLE badge (id INTEGER PRIMARY KEY, badge_name TEXT, description TEXT, badge_image TEXT)");
 		
 		// Create Course table
-		db.execSQL("CREATE TABLE courses (id INTEGER PRIMARY KEY, title TEXT, description TEXT)");
+		db.execSQL("CREATE TABLE courses (id INTEGER PRIMARY KEY, title TEXT, description TEXT,is_complete BOOLEAN )");
 		//Create Topic table
-		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT, video_url TEXT)");
+		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT,video_url TEXT)");
 		//Create Quiz Table
 		db.execSQL("CREATE TABLE quiz (id INTEGER PRIMARY KEY,topic_id INTEGER)");
 		//Create Question Table
 		db.execSQL("CREATE TABLE question (id INTEGER PRIMARY KEY,quiz_id INTEGER,question_text TEXT,answer TEXT,question_type INTEGER)");
 		//Create Option Table
 		db.execSQL("CREATE TABLE option (id INTEGER PRIMARY KEY,question_id INTEGER,option_text TEXT)");
+		
+		
+	
 		
 	}
 

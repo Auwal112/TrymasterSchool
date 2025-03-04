@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<EditText
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:layout_height="wrap_content"
+		android:hint="Topic Title"
+		android:id="@+id/title"/>
+
+	<EditText
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:layout_height="wrap_content"
+		android:hint="Topic objective"
+		android:id="@+id/objective"/>
+
+	<EditText
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:layout_height="wrap_content"
+		android:hint="Vedio Source Url"
+		android:id="@+id/source"/>
+
+	<CheckBox
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="is_publish"
+		android:id="@+id/is_publish"/>
+
+	<Button
+		android:layout_width="wrap_content"
+		style="?android:attr/buttonStyleSmall"
+		android:layout_height="wrap_content"
+		android:text="Small Button"
+		android:id="@+id/submit"/>
+	
+	<Button
+		android:layout_width="wrap_content"
+		style="?android:attr/buttonStyleSmall"
+		android:layout_height="wrap_content"
+		android:text="Continue to add Quizes"
+		android:id="@+id/submit"/>
+	
+
+	
+</LinearLayout>
+

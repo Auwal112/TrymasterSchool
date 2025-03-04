@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.List;
 import java.util.ArrayList;
+import java.sql.*;
 
 public class CourseOperation
 {
@@ -19,13 +20,15 @@ public class CourseOperation
 	}
 	
 	
-	public long createCourse(String title,String desc,String src) {
+	public long createCourse(String title,String desc) {
 		database = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("title", title);
 		values.put("description", desc);
-		values.put("video_url", src);
-		return database.insert("courses", null, values);
+		//values.put("video_url", src);
+		
+		long k=database.insert("courses", null, values);
+		return k;
 	}
 
 	public Course getCourse(int id) {
@@ -69,7 +72,7 @@ public class CourseOperation
 				course.setId(cursor.getInt(0));
 				course.setTitle(cursor.getString(1));
 				course.setDescription(cursor.getString(2));
-				course.setVideoUrl(cursor.getString(3));
+				//course.setVideoUrl(cursor.getString(3));
 				courses.add(course);
 			} while (cursor.moveToNext());
 		}

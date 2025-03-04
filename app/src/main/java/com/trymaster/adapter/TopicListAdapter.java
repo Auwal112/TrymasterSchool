@@ -13,17 +13,18 @@ import android.view.View.*;
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.TopicViewHolder>
 {
 	private List<Topic> topic;
-	private OnClickListener onclick;
+	private OnTopicListener onTopicListener;
 
-	public TopicListAdapter(List<Topic> topic) {
+	public TopicListAdapter(List<Topic> topic,OnTopicListener listener) {
 		this.topic = topic;
+		this.onTopicListener=listener;
 	}
 
 	@NonNull
 	@Override
 	public TopicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.topic_list_item, parent, false);
-		return new TopicViewHolder(view);
+		return new TopicViewHolder(view,onTopicListener);
 	}
 
 	@Override
@@ -41,14 +42,35 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 		return this.topic.size();
 	}
 
-	public class TopicViewHolder extends RecyclerView.ViewHolder {
+	public class TopicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+	{
+
+		
+		
 		public TextView topicTitle,topicGoal,topicIndex;
 
-		public TopicViewHolder(@NonNull View itemView) {
+		public OnTopicListener ontopicL;
+		public TopicViewHolder(@NonNull View itemView,OnTopicListener otl) {
             super(itemView);
             topicTitle = itemView.findViewById(R.id.topic_title);
             topicGoal = itemView.findViewById(R.id.topic_goal);
 			topicIndex = itemView.findViewById(R.id.order);
+		
+			itemView.setOnClickListener(this);
+			ontopicL=otl;
 		}
+		
+		@Override
+		public void onClick(View p1)
+		{
+			onTopicListener.onTopicClick(this.getAdapterPosition());
+
+		}
+		
+		
 	}
+	
+	public interface OnTopicListener{
+        void onTopicClick(int position);
+    }
 }
