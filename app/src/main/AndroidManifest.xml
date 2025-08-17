@@ -38,6 +38,11 @@
             android:label="Watch" >
 
         </activity>
+		<activity
+            android:name=".QuizViewActivity"
+            android:label="Taking Quiz" >
+
+        </activity>
     </application>
 
 </manifest>
