@@ -23,28 +23,36 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//Relatede User Table
-		//user info table
-		db.execSQL("CREATE TABLE user (id INTEGER PRIMARY KEY, username TEXT, email TEXT, password TEXT)");
-		//user Courses Table
+		//user/student info table
+		db.execSQL("CREATE TABLE user (id INTEGER PRIMARY KEY,fullname TEXT, username TEXT, email TEXT,contact TEXT, password TEXT)");
+		//user Topic
+		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT,video_url TEXT)");
+		//Create Quiz Table
+		db.execSQL("CREATE TABLE quiz (id INTEGER PRIMARY KEY,topic_id INTEGER,no_of_question INTEGER)");
+		//Create Question Table
+		db.execSQL("CREATE TABLE question (id INTEGER PRIMARY KEY,quiz_id INTEGER,question_text TEXT,answer TEXT,question_type INTEGER)");
+		//Create Option Table
+		db.execSQL("CREATE TABLE option (id INTEGER PRIMARY KEY,question_id INTEGER,option_text TEXT)");
+		//Create Record Table
+		db.execSQL("CREATE TABLE records (id INTEGER PRIMARY KEY,user_id INTEGER,topic_id INTEGER,quiz_id INTEGER)");
+		
+		
+		
+		/* 		###############################
+				those below Table is for feature use
+				#########£##£#####################*/
+			
 		//courses being enrolled
+
 		db.execSQL("CREATE TABLE course_enroll (id INTEGER PRIMARY KEY, user_id INTEGER, course_id INTEGER, progress INTEGER, completed BOOLEAN)");
 		//point earn by user
 		db.execSQL("CREATE TABLE point (id INTEGER PRIMARY KEY, user_id INTEGER, course_id INTEGER, point_earn INTEGER)");
 		//User Badges
 		db.execSQL("CREATE TABLE badge (id INTEGER PRIMARY KEY, badge_name TEXT, description TEXT, badge_image TEXT)");
-		
+
 		// Create Course table
 		db.execSQL("CREATE TABLE courses (id INTEGER PRIMARY KEY, title TEXT, description TEXT,is_complete BOOLEAN )");
 		//Create Topic table
-		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT,video_url TEXT)");
-		//Create Quiz Table
-		db.execSQL("CREATE TABLE quiz (id INTEGER PRIMARY KEY,topic_id INTEGER)");
-		//Create Question Table
-		db.execSQL("CREATE TABLE question (id INTEGER PRIMARY KEY,quiz_id INTEGER,question_text TEXT,answer TEXT,question_type INTEGER)");
-		//Create Option Table
-		db.execSQL("CREATE TABLE option (id INTEGER PRIMARY KEY,question_id INTEGER,option_text TEXT)");
-		
-		
 	
 		
 	}

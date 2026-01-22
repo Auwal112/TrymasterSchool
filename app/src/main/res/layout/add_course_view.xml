@@ -11,24 +11,31 @@
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
 		android:padding="10dp">
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="150dp"
+			android:id="@+id/adsbanner"/>
 
 		<EditText
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
-			android:id="@+id/title"/>
+			android:id="@+id/title"
+			android:hint="Course Title"/>
 
 		<EditText
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
-			android:id="@+id/description"/>
+			android:id="@+id/description"
+			android:hint="Course Description"/>
 
 		<EditText
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
-			android:id="@+id/vedioSrc"/>
+			android:id="@+id/vedioSrc"
+			android:hint="Vedio Src"/>
 
 		<Button
 			android:layout_width="wrap_content"

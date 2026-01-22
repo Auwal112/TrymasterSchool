@@ -52,7 +52,6 @@
 		<android.support.v7.widget.RecyclerView
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			style="@style/CardBody"
 			android:id="@+id/course_rcv">
 
 		</android.support.v7.widget.RecyclerView>

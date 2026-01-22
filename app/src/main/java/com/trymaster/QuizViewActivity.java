@@ -96,7 +96,7 @@ public class QuizViewActivity extends AppCompatActivity
 			@Override
 			public void run() {
 				// Update your view here
-				if(minute == 0){
+				if(minute == 0 || nextQuestionIndex > quiz.size() ){
 					//Toast.makeText(this.getContext(),"Time up",100).show();
 					handler.removeCallbacks(this);
 				}

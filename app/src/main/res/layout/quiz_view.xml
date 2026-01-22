@@ -10,7 +10,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:padding="16dp"
-		android:background="#2196F3">
+		android:background="#f4f5f5">
 
 		<TextView
 			android:id="@+id/tv_question_number"
