@@ -66,24 +66,31 @@ public class QuizViewActivity extends AppCompatActivity
 		ctx=this;
 		//it=quiz.iterator();
 
-		if(nextQuestionIndex<4) 	updateView(quiz.get(nextQuestionIndex));
+		//if(nextQuestionIndex<4) 	updateView(quiz.get(nextQuestionIndex));
 		
 		
 		//All Option group
-		radioGroup = findViewById(R.id.rg_options);
+		radioGroup = (RadioGroup) findViewById(R.id.rg_options);
 		radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
 				@Override
 				public void onCheckedChanged(RadioGroup group, int checkedId) {
-					RadioButton radioButton = group.findViewById(checkedId);
+
+					// VERY IMPORTANT: prevent crash
+					if (checkedId == -1) return;
+
+					RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+					if (radioButton == null) return;
+
 					String selectedText = radioButton.getText().toString();
-					// Do something with the selected text
-					Toast.makeText(ctx,selectedText,100).show();
-					Question q=quiz.get(nextQuestionIndex);
-					if(answer.containsKey(q.getId())){
-						answer.replace(q.getId(),selectedText);
-					}else{
-						answer.put(q.getId(),selectedText);
-					}
+
+					Toast.makeText(ctx, selectedText, Toast.LENGTH_SHORT).show();
+
+					Question q = quiz.get(nextQuestionIndex);
+
+					// put() handles both insert and update
+					answer.put(q.getId(), selectedText);
+					radioGroup.clearCheck();
 				}
 			});
 		
@@ -95,13 +102,17 @@ public class QuizViewActivity extends AppCompatActivity
 		Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
-				// Update your view here
-				if(minute == 0 || nextQuestionIndex > quiz.size() ){
-					//Toast.makeText(this.getContext(),"Time up",100).show();
+
+				if (minute == 0 && second == 0) {
 					handler.removeCallbacks(this);
+					Toast.makeText(ctx, "Time Up!", Toast.LENGTH_LONG).show();
+					finishQuiz();
+					return;
 				}
+				
+
 				time_tick();
-				handler.postDelayed(this, 1000); // 1000ms = 1s
+				handler.postDelayed(this, 1000);
 			}
 		};
 		handler.post(runnable);
@@ -110,12 +121,20 @@ public class QuizViewActivity extends AppCompatActivity
 		prev_button=findViewById(R.id.btn_prev);
 		next_button=findViewById(R.id.btn_next);
 		//Reverse Previous question to View
-		prev_button.setOnClickListener(new OnClickListener(){
+		prev_button.setOnClickListener(new View.OnClickListener() {
 				@Override
-				public void onClick(View p1)
-				{
-					// TODO: Implement this method
+				public void onClick(View v) {
+
+					if (nextQuestionIndex > 0) {
+						nextQuestionIndex--;
+						updateView(quiz.get(nextQuestionIndex));
+					} else {
+						Toast.makeText(ctx, "First Question", Toast.LENGTH_SHORT).show();
+					}
+					radioGroup.clearCheck();
 				}
+				
+	
 			});
 		//Get Next Question on View
 		next_button.setOnClickListener(new OnClickListener() {
@@ -125,32 +144,70 @@ public class QuizViewActivity extends AppCompatActivity
 						nextQuestionIndex++;
 						updateView(quiz.get(nextQuestionIndex));
 					} else {
-						Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
+						finishQuiz();
+						//Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
 					}
+					radioGroup.clearCheck();
 				}
 			});
 
 	}
-	public void updateView(Question q){
+	public void updateView(Question q) {
+
 		questionText.setText(q.getText());
+		questionNumber.setText("Question " + (nextQuestionIndex + 1));
+
 		op1.setText(q.getOp1());
 		op2.setText(q.getOp2());
 		op3.setText(q.getOp3());
 		op4.setText(q.getOp4());
+
+		
+
+		// Restore selected answer if exists
+		if (answer.containsKey(q.getId())) {
+			String selected = answer.get(q.getId());
+
+			if (op1.getText().toString().equals(selected)) {
+				op1.setChecked(true);
+			} else if (op2.getText().toString().equals(selected)) {
+				op2.setChecked(true);
+			} else if (op3.getText().toString().equals(selected)) {
+				op3.setChecked(true);
+			} else if (op4.getText().toString().equals(selected)) {
+				op4.setChecked(true);
+			}
+		}
 	}
 	
-	public void  time_tick(){
-		//update quiz time text view
-		if(second == 0){
-			minute=minute-1;
-			second=60;
+	public void time_tick() {
+
+		if (second == 0) {
+			minute--;
+			second = 59;
+		} else {
+			second--;
 		}
-		
-		second=second-1;
-		String s=Integer.toString(second);
-		tv_time_sec.setText(s);
-		tv_time_min.setText(Integer.toString(minute));
-		
+
+		tv_time_min.setText(String.valueOf(minute));
+		tv_time_sec.setText(String.valueOf(second));
+	}
+	
+	public void finishQuiz() {
+
+		int score = 0;
+
+		for (Question q : quiz) {
+			if (answer.containsKey(q.getId())) {
+				/*if (answer.get(q.getId()).equals(q.getAnswer())) {
+					score++;
+				}*/
+			}
+		}
+
+		Toast.makeText(ctx,
+					   "Quiz Finished\nScore: " + score + "/" + quiz.size(),
+					   Toast.LENGTH_LONG).show();
 	}
 
 }
