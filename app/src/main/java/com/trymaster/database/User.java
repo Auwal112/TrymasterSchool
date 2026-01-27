@@ -26,6 +26,9 @@ public class User
 	{
 		return id;
 	}
+	public void setFullname(String s){
+		this.fullname=s;
+	}
 	public String getFullName(){
 		return this.fullname;
 	}
@@ -60,6 +63,9 @@ public class User
 		return password;
 	}
 	
+	public void setContact(String s){
+		this.contact=s;
+	}
 	public String getContact(){
 		return this.contact;
 	}

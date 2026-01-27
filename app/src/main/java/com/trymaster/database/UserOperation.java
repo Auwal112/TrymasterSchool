@@ -91,6 +91,18 @@ public class UserOperation
 		return success;
 	}
 
+	public boolean isUsernameExists(String username) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(
+			"SELECT id FROM users WHERE username = ?",
+			new String[]{username}
+		);
+		boolean exists = cursor.moveToFirst();
+		cursor.close();
+		db.close();
+		return exists;
+	}
+	
 }
 
 

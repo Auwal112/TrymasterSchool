@@ -9,11 +9,14 @@ import android.widget.Toast;
 import android.content.Intent;
 
 import com.trymaster.database.UserOperation;
+import android.widget.*;
+import com.trymaster.session.SessionManager;
 
 public class LoginActivity extends Activity {
 
     EditText etUsername, etPassword;
     Button btnLogin;
+	TextView tv_signup_button;
 
     UserOperation userOperation;
 
@@ -27,6 +30,15 @@ public class LoginActivity extends Activity {
         etPassword = findViewById(R.id.et_password);
         btnLogin   = findViewById(R.id.btn_login);
 
+		tv_signup_button=findViewById(R.id.tv_signup);
+		tv_signup_button.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
         userOperation = new UserOperation(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +60,9 @@ public class LoginActivity extends Activity {
 							Toast.makeText(LoginActivity.this,
 										   "Login Successful",
 										   Toast.LENGTH_SHORT).show();
-
+							//Create session for successfull login		   
+							SessionManager session = new SessionManager(LoginActivity.this);
+							session.createLoginSession(username);
 							// go to dashboard
 							Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 							startActivity(intent);

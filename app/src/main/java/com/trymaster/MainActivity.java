@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.view.View.*;
 import android.view.View;
 import com.trymaster.database.*;
+import com.trymaster.session.*;
 
 public class MainActivity extends AppCompatActivity implements CourseAdapter.OnCourseListener
 {
@@ -33,7 +34,10 @@ public class MainActivity extends AppCompatActivity implements CourseAdapter.OnC
 		
 		adsBanner=findViewById(R.id.adsbanner);
 		add_course_btn=findViewById(R.id.add_course);
-		
+		adsDescription=findViewById(R.id.adsdescription);
+		SessionManager session = new SessionManager(MainActivity.this);
+		String username=session.getUsername();
+		adsDescription.setText(username);
 		courseRecyclerView = findViewById(R.id.course_rcv);
 //
 //		//Populate the database with data
