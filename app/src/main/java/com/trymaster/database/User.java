@@ -3,20 +3,19 @@ package com.trymaster.database;
 public class User
 {
 	private int id;
-	private String username,
-					email,
-	password;
+	private String fullname,username,
+					email,contact,password;
 
-	public User(int id, String username, String email, String password)
+	public User(int id,String fullname, String username, String email, String password,String contact)
 	{
 		this.id = id;
+		this.fullname=fullname;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.contact=contact;
 	}
 	public User(){}
-	
-
 
 	public void setId(int id)
 	{
@@ -26,6 +25,9 @@ public class User
 	public int getId()
 	{
 		return id;
+	}
+	public String getFullName(){
+		return this.fullname;
 	}
 
 	public void setUsername(String username)
@@ -56,4 +58,10 @@ public class User
 	public String getPassword()
 	{
 		return password;
-	}}
+	}
+	
+	public String getContact(){
+		return this.contact;
+	}
+	
+	}

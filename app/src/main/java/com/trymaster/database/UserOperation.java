@@ -21,9 +21,11 @@ public class UserOperation
 	public void insertUser(User user) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
+		values.put("fullname",user.getFullName());
 		values.put("username", user.getUsername());
 		values.put("password", user.getPassword());
 		values.put("email", user.getEmail());
+		values.put("contact",user.getContact());
 		db.insert("users", null, values);
 		db.close();
 	}
@@ -76,6 +78,17 @@ public class UserOperation
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		db.delete("users", "id = ?", new String[] { String.valueOf(id) });
 		db.close();
+	}
+	public boolean login(String username, String password) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(
+			"SELECT * FROM users WHERE username = ? AND password = ?",
+			new String[]{username, password}
+		);
+		boolean success = cursor.moveToFirst();
+		cursor.close();
+		db.close();
+		return success;
 	}
 
 }
