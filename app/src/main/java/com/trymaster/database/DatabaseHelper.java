@@ -7,7 +7,7 @@ import android.support.v7.appcompat.*;
 public class DatabaseHelper extends SQLiteOpenHelper
 {
 	private static final String DATABASE_NAME = "trymaster.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 
 	public SQLiteDatabase db;
 	Context ctx;
@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		//Create Option Table
 		db.execSQL("CREATE TABLE option (id INTEGER PRIMARY KEY,question_id INTEGER,option_text TEXT)");
 		//Create Record Table
-		db.execSQL("CREATE TABLE records (id INTEGER PRIMARY KEY,user_id INTEGER,topic_id INTEGER,quiz_id INTEGER)");
+		db.execSQL("CREATE TABLE records (id INTEGER PRIMARY KEY,user_id INTEGER,topic_id INTEGER,quiz_id INTEGER,total_mark INTEGER)");
 		
 		
 		

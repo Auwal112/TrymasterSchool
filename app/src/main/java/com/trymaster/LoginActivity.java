@@ -62,9 +62,10 @@ public class LoginActivity extends Activity {
 										   Toast.LENGTH_SHORT).show();
 							//Create session for successfull login		   
 							SessionManager session = new SessionManager(LoginActivity.this);
-							session.createLoginSession(username);
+							int id=userOperation.getUserIdByUsername(username);
+							session.createLoginSession(id,username);
 							// go to dashboard
-							Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+							Intent intent = new Intent(LoginActivity.this, DashBoardActivity.class);
 							startActivity(intent);
 							finish();
 

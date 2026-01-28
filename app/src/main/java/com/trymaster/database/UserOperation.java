@@ -90,7 +90,28 @@ public class UserOperation
 		db.close();
 		return success;
 	}
+	
+	public int getUserIdByUsername(String username) {
 
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery(
+			"SELECT id FROM users WHERE username = ?",
+			new String[]{username}
+		);
+
+		int userId = -1; // -1 means not found
+
+		if (cursor.moveToFirst()) {
+			userId = cursor.getInt(0);
+		}
+
+		cursor.close();
+		db.close();
+
+		return userId;
+	}
+	
 	public boolean isUsernameExists(String username) {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(
@@ -103,6 +124,58 @@ public class UserOperation
 		return exists;
 	}
 	
+	
+	//Those function manipulate record table for user
+	// Calculte the total mark user got throught all quiz
+	public int getOverallRank(int studentId) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery(
+			"SELECT SUM(total_mark) FROM records WHERE user_id = ?",
+			new String[]{String.valueOf(studentId)}
+		);
+
+		int rank = 0;
+		if (cursor.moveToFirst() && !cursor.isNull(0)) {
+			rank = cursor.getInt(0);
+		}
+
+		cursor.close();
+		db.close();
+		return rank;
+	}
+	//Count number of quiz completed by user
+	public int getQuizCount(int studentId) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		Cursor cursor = db.rawQuery(
+			"SELECT COUNT(*) FROM records WHERE user_id = ?",
+			new String[]{String.valueOf(studentId)}
+		);
+
+		int count = 0;
+		if (cursor.moveToFirst()) {
+			count = cursor.getInt(0);
+		}
+
+		cursor.close();
+		db.close();
+		return count;
+	}
+	//insert user Record function
+	public void insertRecord(int studentId, int quizId, int topicId, int totalPoint) {
+
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+		values.put("user_id", studentId);
+		values.put("quiz_id", quizId);
+		values.put("topic_id", topicId);
+		values.put("total_mark", totalPoint);
+
+		db.insert("records", null, values);
+		db.close();
+	}
 }
 
 
