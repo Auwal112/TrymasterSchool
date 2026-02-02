@@ -22,7 +22,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_activity);
+        
 
         session = new SessionManager(this);
 
@@ -81,4 +81,9 @@ public class DashBoardActivity extends AppCompatActivity {
 				}
 			});
     }
+
+	private void method()
+	{
+		setContentView(R.layout.dashboard_activity);
+	}
 }

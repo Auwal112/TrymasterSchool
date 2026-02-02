@@ -17,6 +17,7 @@ import android.view.View;
 import com.trymaster.database.*;
 import com.trymaster.session.*;
 
+
 public class MainActivity extends AppCompatActivity implements CourseAdapter.OnCourseListener
 {
 	ImageView adsBanner;
