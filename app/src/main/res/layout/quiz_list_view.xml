@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/card">
+
+    <!-- Quiz Title -->
+    <TextView
+        android:id="@+id/tvQuizTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quiz Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+    <!-- Quiz Category -->
+    <TextView
+        android:id="@+id/tvQuizCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mathematics"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Total Questions -->
+    <TextView
+        android:id="@+id/tvTotalQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 Questions"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:layout_marginTop="2dp"/>
+	
+	
+	<!-- Quiz Description -->
+    <TextView
+        android:id="@+id/tvQuizDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description...."
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:layout_marginTop="4dp"/>
+</LinearLayout>
