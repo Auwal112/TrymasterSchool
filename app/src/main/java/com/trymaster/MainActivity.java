@@ -16,15 +16,16 @@ import android.view.View.*;
 import android.view.View;
 import com.trymaster.database.*;
 import com.trymaster.session.*;
+import com.trymaster.adapter.*;
 
 
-public class MainActivity extends AppCompatActivity implements CourseAdapter.OnCourseListener
+public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQuizListener
 {
 	ImageView adsBanner;
 	TextView adsDescription;
-	RecyclerView courseRecyclerView;
+	RecyclerView quizRecyclerView;
 	Intent intent;
-	Button add_course_btn;
+	Button add_quiz_btn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -34,37 +35,24 @@ public class MainActivity extends AppCompatActivity implements CourseAdapter.OnC
 		setContentView(R.layout.main_view);
 		
 		adsBanner=findViewById(R.id.adsbanner);
-		add_course_btn=findViewById(R.id.add_course);
+		add_quiz_btn=findViewById(R.id.add_course);
 		adsDescription=findViewById(R.id.adsdescription);
+		
 		SessionManager session = new SessionManager(MainActivity.this);
 		String username=session.getUsername();
 		adsDescription.setText(username);
-		courseRecyclerView = findViewById(R.id.course_rcv);
-//
-//		//Populate the database with data
-//		String[] course =this.getString(R.string.course).split("\n");
-//		String[] topic =this.getString(R.string.topic).split("\n");
-//		CourseOperation c=new CourseOperation(this);
-//		TopicOperation top=new TopicOperation(this);
-//
-//		float id=c.createCourse(course[0],course[1]);
-//		for(int i=0;i<topic.length;i++){
-//			String[] t=topic[i].split(",");
-//			top.createTopic(id,t[0],t[1],"http//:trymaster.com");
-//
-//		}
-//		c=null;
-//		top=null;
+		quizRecyclerView = findViewById(R.id.course_rcv);
+		
 		
 		// Get courses from database
-		CourseOperation courses = new CourseOperation(this);
-		List<Course> courseList=courses.getAllCourses();
+		QuizOperation quizop = new QuizOperation(this);
+		List<Quiz> quizList=quizop.getAllQuiz();
 	
-		CourseAdapter courseAdapter = new CourseAdapter(courseList,this);
-		courseRecyclerView.setAdapter(courseAdapter);
-		courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+		QuizAdapter courseAdapter = new QuizAdapter(quizList,this);
+		quizRecyclerView.setAdapter(courseAdapter);
+		quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		
-		add_course_btn.setOnClickListener(new OnClickListener(){
+		add_quiz_btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
 				intent=new Intent(v.getContext(),AddCourseActivity.class);
@@ -76,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements CourseAdapter.OnC
 		}//end of Oncreate method
 	//respond to click when recyler item is beign click
 	@Override
-	public void onCourseClick(int position)
+	public void onQuizClick(int position)
 	{
 		// TODO: Implement this method
 		intent=new Intent(this,TopicListActivity.class);

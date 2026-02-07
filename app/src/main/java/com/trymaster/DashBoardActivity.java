@@ -22,7 +22,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        setContentView(R.layout.dashboard_activity);
 
         session = new SessionManager(this);
 
@@ -61,7 +61,7 @@ public class DashBoardActivity extends AppCompatActivity {
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					//startActivity(new Intent(DashboardActivity.this, QuizListActivity.class));
+					startActivity(new Intent(DashBoardActivity.this, MainActivity.class));
 				}
 			});
 
@@ -82,8 +82,5 @@ public class DashBoardActivity extends AppCompatActivity {
 			});
     }
 
-	private void method()
-	{
-		setContentView(R.layout.dashboard_activity);
-	}
+	
 }

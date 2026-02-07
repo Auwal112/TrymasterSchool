@@ -15,12 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".AddQuizActivity"
-            android:label="Login" >
+            android:name=".DashBoardActivity"
+            android:label="DashBoard" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+		
+		<activity
+            android:name=".MainActivity"
+            android:label="Quiz List" >
+
+        </activity>
+		<activity
+            android:name=".AddQuizActivity"
+            android:label="Add Quiz" >
+
         </activity>
 		<activity
             android:name=".SignupActivity"
@@ -29,7 +40,7 @@
         </activity>
 		
 		<activity
-            android:name=".DashBoardActivity"
+            android:name=".LoginActivity"
             android:label="Main" >
 
         </activity>

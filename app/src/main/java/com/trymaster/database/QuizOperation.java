@@ -19,18 +19,48 @@ public class QuizOperation {
     /* ===================== QUIZ CRUD ===================== */
 
     // CREATE quiz
-    public long insertQuiz(int topicId, int noOfQuestion) {
+    public long insertQuiz(String quiz_title,String category,int topicId, int noOfQuestion) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put("topic_id", topicId);
         values.put("no_of_question", noOfQuestion);
+		values.put("title",quiz_title);
+		values.put("category",category);
 
         long quizId = db.insert("quiz", null, values);
         db.close();
         return quizId;
     }
 
+	// Get All Quiz
+	public List<Quiz> getAllQuiz() {
+    List<Quiz> quizList = new ArrayList<>();
+
+    SQLiteDatabase db = dbHelper.getReadableDatabase();
+    Cursor cursor = db.rawQuery("SELECT * FROM quiz", null);
+
+    if (cursor != null && cursor.moveToFirst()) {
+        do {
+            long id = cursor.getLong(cursor.getColumnIndex("id"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String description = ""; // default empty if your table doesn't have description
+            int topicId = cursor.getInt(cursor.getColumnIndex("topic_id"));
+            String category = cursor.getString(cursor.getColumnIndex("category"));
+            int noOfQuestion = cursor.getInt(cursor.getColumnIndex("no_of_question"));
+
+            // If your quiz table now has description column, uncomment this line:
+            // description = cursor.getString(cursor.getColumnIndex("description"));
+
+            Quiz quiz = new Quiz(id, title, description, category, noOfQuestion);
+            quizList.add(quiz);
+        } while (cursor.moveToNext());
+        cursor.close();
+    }
+
+    db.close();
+    return quizList;
+}
     // READ quiz by id
     public Cursor getQuizById(int quizId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();

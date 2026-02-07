@@ -7,7 +7,7 @@ import android.support.v7.appcompat.*;
 public class DatabaseHelper extends SQLiteOpenHelper
 {
 	private static final String DATABASE_NAME = "trymaster.db";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	public SQLiteDatabase db;
 	Context ctx;
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		//user Topic
 		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT,video_url TEXT)");
 		//Create Quiz Table
-		db.execSQL("CREATE TABLE quiz (id INTEGER PRIMARY KEY,topic_id INTEGER,no_of_question INTEGER)");
+		db.execSQL("CREATE TABLE quiz (id INTEGER PRIMARY KEY,topic_id INTEGER,title TEXT,category TEXT,no_of_question INTEGER)");
 		//Create Question Table
 		db.execSQL("CREATE TABLE question (id INTEGER PRIMARY KEY,quiz_id INTEGER,question_text TEXT,answer TEXT,question_type INTEGER)");
 		//Create Option Table

@@ -124,7 +124,9 @@ public class AddQuizActivity extends AppCompatActivity {
             return;
         }
 
-        long quizId = insertQuiz(title, category);
+		//set topicid to zero meaning that quiz is standalone
+        long quizId =quiz_operation.insertQuiz(title,category,-1,-1);
+		
 
         if (quizId == -1) {
             toast("Failed to create quiz");
@@ -137,42 +139,12 @@ public class AddQuizActivity extends AppCompatActivity {
         finish();
     }
 
-    // ---------------- DATABASE INSERTS ----------------
-
-    private long insertQuiz(String title, String category) {
-        ContentValues cv = new ContentValues();
-        cv.put("title", title);
-        cv.put("category", category);
-        cv.put("total_questions", 0);
-
-        return db.insert("quiz", null, cv);
-    }
-
-    private long insertQuestion(long quizId, String questionText) {
-        ContentValues cv = new ContentValues();
-        cv.put("quiz_id", quizId);
-        cv.put("question_text", questionText);
-
-        long qId = db.insert("question", null, cv);
-
-        db.execSQL(
-			"UPDATE quiz SET total_questions = total_questions + 1 WHERE id = " + quizId
-        );
-
-        return qId;
-    }
-
-    private void insertOption(long questionId, String optionText, int isCorrect) {
-        ContentValues cv = new ContentValues();
-        cv.put("question_id", questionId);
-        cv.put("option_text", optionText);
-        cv.put("is_correct", isCorrect);
-
-        db.insert("option", null, cv);
-    }
+ 
+    
 
     // ---------------- CSV READER ----------------
 
+	
     private void readCsvAndInsert(Uri uri, long quizId) {
         try {
             InputStream is = getContentResolver().openInputStream(uri);
@@ -198,11 +170,13 @@ public class AddQuizActivity extends AppCompatActivity {
                 };
                 String correct = data[5].trim().toUpperCase();
 
-                long questionId = insertQuestion(quizId, questionText);
+				//insert question into database in relation with quiz
+                long questionId = quiz_operation.insertQuestion((int) quizId,questionText,correct,1);
+				
 
                 for (int i = 0; i < 4; i++) {
-                    int isCorrect = (correct.equals(String.valueOf((char) ('A' + i)))) ? 1 : 0;
-                    insertOption(questionId, options[i], isCorrect);
+					//insert option in relation with question
+					quiz_operation.insertOption((int)questionId,options[i]);
                 }
             }
 
