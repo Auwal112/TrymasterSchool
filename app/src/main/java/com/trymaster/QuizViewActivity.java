@@ -22,19 +22,20 @@ import com.trymaster.session.SessionManager;
 public class QuizViewActivity extends AppCompatActivity
 {
 
+	//High space object
 	QuizOperation quiz_op;
 	UserOperation user_op;
-	
-	
-	int nextQuestionIndex;
-	int second,minute;
-	Iterator<Question> it;
-	
 	SessionManager session;
-	
 	List<Question> questionList;
 	Map<Integer,String> answer;
+	Iterator<Question> it;
 	
+	//primitive datatype
+	int nextQuestionIndex;
+	int second,minute;
+	
+	
+	//Ui widget
 	TextView tv_time_sec,tv_time_min;
 	Button prev_button,next_button;
 	RadioGroup radioGroup;
@@ -65,12 +66,12 @@ public class QuizViewActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quiz_view);
 		
-
+		// we start at question in index 0
 		nextQuestionIndex=0;
-		
-		
+		//fetch question on a given quiz id
 		questionList=quiz_op.getQuestionsByQuizId(1);
 		
+		//Initialize user interaction widget
 		questionText=findViewById(R.id.tv_question_text);
 		questionNumber=findViewById(R.id.tv_question_number);
 		op1=findViewById(R.id.rb_option1);
@@ -78,8 +79,9 @@ public class QuizViewActivity extends AppCompatActivity
 		op3=findViewById(R.id.rb_option3);
 		op4=findViewById(R.id.rb_option4);
 		
-		second=60;
-		minute=40;
+		//Time
+		second=60;	minute=40;
+		//Context
 		ctx=this;
 		//it=quiz.iterator();
 
@@ -107,6 +109,7 @@ public class QuizViewActivity extends AppCompatActivity
 
 					// put() handles both insert and update
 					answer.put(q.getId(), selectedText);
+					//Toast.makeText(ctx,""+answer.size(),100).show();
 					//radioGroup.clearCheck();
 				}
 			});
@@ -148,7 +151,7 @@ public class QuizViewActivity extends AppCompatActivity
 					} else {
 						Toast.makeText(ctx, "First Question", Toast.LENGTH_SHORT).show();
 					}
-					radioGroup.clearCheck();
+					//radioGroup.clearCheck();
 				}
 				
 	
@@ -159,7 +162,7 @@ public class QuizViewActivity extends AppCompatActivity
 				public void onClick(View p1) {
 					String answer=(questionList.get(nextQuestionIndex).getAnswer());
 					
-					Toast.makeText(p1.getContext(),"The Answer is: "+answer,100).show();
+					//Toast.makeText(p1.getContext(),"The Answer is: "+answer,100).show();
 					if (nextQuestionIndex < questionList.size() - 1) {
 						nextQuestionIndex++;
 						updateView(questionList.get(nextQuestionIndex));
@@ -167,13 +170,14 @@ public class QuizViewActivity extends AppCompatActivity
 						finishQuiz();
 						//Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
 					}
-					radioGroup.clearCheck();
+					//radioGroup.clearCheck();
 				}
 			});
 
 	}
 	public void updateView(Question q) {
 
+		radioGroup.clearCheck();
 		questionText.setText(q.getText());
 		questionNumber.setText("Question " + (nextQuestionIndex + 1));
 
@@ -221,30 +225,15 @@ public class QuizViewActivity extends AppCompatActivity
 		int stud_id = session.getUserId();
 
 		for (Question q : questionList) {
-			if (answer.containsKey(q.getId())) {
-				if (answer.get(q.getId()).equals(q.getAnswer())) {
-					score++;
-					
-					if(score>=6){
-						float done=user_op.insertRecord(stud_id,1,0,score);
-						if(done>-1)
-						{
-							Toast.makeText(ctx, "Log record successfully", Toast.LENGTH_SHORT).show();
-						}else{
-							Toast.makeText(ctx, "Error occur while logging the record", Toast.LENGTH_SHORT).show();
-						}
-						
-					}else{
-						
-						Toast.makeText(ctx, "Try Again boy", Toast.LENGTH_SHORT).show();
-					}
-					
-					//String username = session.getUsername();
-					
-				}
-			}
+			//if answer contain questionid and answer is correct
+			if (answer.containsKey(q.getId()) && answer.get(q.getId()).equals(q.getAnswer()) )	score++;
 		}
-
+		
+		if(score>=6){
+			float done=user_op.insertRecord(stud_id,1,0,score);
+		}else{
+			Toast.makeText(ctx,"Try again boy",100).show();
+		}
 		Toast.makeText(ctx,
 					   "Quiz Finished\nScore: " + score + "/" + questionList.size(),
 					   Toast.LENGTH_LONG).show();

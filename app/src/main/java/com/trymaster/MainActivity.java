@@ -21,6 +21,9 @@ import com.trymaster.adapter.*;
 
 public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQuizListener
 {
+	List<Quiz> quizList;
+	UserOperation user_op;
+	
 	ImageView adsBanner;
 	TextView adsDescription;
 	RecyclerView quizRecyclerView;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		
 		// Get courses from database
 		QuizOperation quizop = new QuizOperation(this);
-		List<Quiz> quizList=quizop.getAllQuiz();
+		quizList=quizop.getAllQuiz();
 	
 		QuizAdapter courseAdapter = new QuizAdapter(quizList,this);
 		quizRecyclerView.setAdapter(courseAdapter);
@@ -67,8 +70,15 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 	public void onQuizClick(int position)
 	{
 		// TODO: Implement this method
-		intent=new Intent(this,QuizViewActivity.class);
-		startActivity(intent);
+		int q=(int) quizList.get(position).getId();
+		user_op=new UserOperation(this);
+		if(user_op.user_has_done(q)){
+			Toast.makeText(this,"You have alredy done this quiz",100).show();
+		}else{
+			intent=new Intent(this,QuizViewActivity.class);
+			startActivity(intent);
+		}
+		
 	}
 	
 	

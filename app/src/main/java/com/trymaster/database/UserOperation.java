@@ -162,6 +162,19 @@ public class UserOperation
 		db.close();
 		return count;
 	}
+	
+	//Has already did the quiz
+	public boolean user_has_done(int quiz_id){
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery(
+			"SELECT * FROM records WHERE quiz_id = ?",
+			new String[]{String.valueOf(quiz_id)}
+		);
+		boolean exists = cursor.moveToFirst();
+		cursor.close();
+		db.close();
+		return exists;
+	}
 	//insert user Record function
 	public float insertRecord(int studentId, int quizId, int topicId, int totalPoint) {
 
