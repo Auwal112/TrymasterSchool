@@ -163,7 +163,7 @@ public class UserOperation
 		return count;
 	}
 	//insert user Record function
-	public void insertRecord(int studentId, int quizId, int topicId, int totalPoint) {
+	public float insertRecord(int studentId, int quizId, int topicId, int totalPoint) {
 
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -173,8 +173,9 @@ public class UserOperation
 		values.put("topic_id", topicId);
 		values.put("total_mark", totalPoint);
 
-		db.insert("records", null, values);
+		float id=db.insert("records", null, values);
 		db.close();
+		return id;
 	}
 }
 

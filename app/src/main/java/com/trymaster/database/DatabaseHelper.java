@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//Relatede User Table
-		//user/student info table
+		//user student info table
 		db.execSQL("CREATE TABLE users (id INTEGER PRIMARY KEY,fullname TEXT, username TEXT, email TEXT,contact TEXT, password TEXT)");
 		//user Topic
 		db.execSQL("CREATE TABLE topic (id INTEGER PRIMARY KEY,course_id INTEGER, title TEXT,objective TEXT,video_url TEXT)");
@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		db.execSQL("CREATE TABLE question (id INTEGER PRIMARY KEY,quiz_id INTEGER,question_text TEXT,answer TEXT,question_type INTEGER)");
 		//Create Option Table
 		db.execSQL("CREATE TABLE option (id INTEGER PRIMARY KEY,question_id INTEGER,option_text TEXT)");
+		
 		//Create Record Table
 		db.execSQL("CREATE TABLE records (id INTEGER PRIMARY KEY,user_id INTEGER,topic_id INTEGER,quiz_id INTEGER,total_mark INTEGER)");
 		

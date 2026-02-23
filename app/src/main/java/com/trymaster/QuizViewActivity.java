@@ -17,14 +17,20 @@ import android.content.Context;
 import java.util.Map;
 import java.util.HashMap;
 import com.trymaster.database.*;
+import com.trymaster.session.SessionManager;
 
 public class QuizViewActivity extends AppCompatActivity
 {
 
 	QuizOperation quiz_op;
+	UserOperation user_op;
+	
+	
 	int nextQuestionIndex;
 	int second,minute;
 	Iterator<Question> it;
+	
+	SessionManager session;
 	
 	List<Question> questionList;
 	Map<Integer,String> answer;
@@ -46,7 +52,10 @@ public class QuizViewActivity extends AppCompatActivity
 	{
 	
 		
-		
+		session = new SessionManager(this);
+		user_op=new UserOperation(this);
+		quiz_op=new QuizOperation(this);
+		answer=new HashMap<>();
 		
 //		quiz.add(new Question(1,"who is president of Nigeria","Bola","bukhari","Atiku","Rabiu","Bola"));
 //		quiz.add(new Question(2,"What Year of Independent","1998","1940","1906","1960","1960"));
@@ -58,9 +67,8 @@ public class QuizViewActivity extends AppCompatActivity
 		
 
 		nextQuestionIndex=0;
-		answer=new HashMap<>();
-
-		quiz_op=new QuizOperation(this);
+		
+		
 		questionList=quiz_op.getQuestionsByQuizId(1);
 		
 		questionText=findViewById(R.id.tv_question_text);
@@ -208,11 +216,31 @@ public class QuizViewActivity extends AppCompatActivity
 	public void finishQuiz() {
 
 		int score = 0;
+		
+		// Session data
+		int stud_id = session.getUserId();
 
 		for (Question q : questionList) {
 			if (answer.containsKey(q.getId())) {
 				if (answer.get(q.getId()).equals(q.getAnswer())) {
 					score++;
+					
+					if(score>=6){
+						float done=user_op.insertRecord(stud_id,1,0,score);
+						if(done>-1)
+						{
+							Toast.makeText(ctx, "Log record successfully", Toast.LENGTH_SHORT).show();
+						}else{
+							Toast.makeText(ctx, "Error occur while logging the record", Toast.LENGTH_SHORT).show();
+						}
+						
+					}else{
+						
+						Toast.makeText(ctx, "Try Again boy", Toast.LENGTH_SHORT).show();
+					}
+					
+					//String username = session.getUsername();
+					
 				}
 			}
 		}
