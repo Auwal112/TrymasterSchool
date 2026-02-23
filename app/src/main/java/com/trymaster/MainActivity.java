@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		add_quiz_btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
-				intent=new Intent(v.getContext(),AddCourseActivity.class);
+				intent=new Intent(v.getContext(),AddQuizActivity.class);
 				startActivity(intent);
 				
 			}
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 	public void onQuizClick(int position)
 	{
 		// TODO: Implement this method
-		intent=new Intent(this,TopicListActivity.class);
+		intent=new Intent(this,QuizViewActivity.class);
 		startActivity(intent);
 	}
 	

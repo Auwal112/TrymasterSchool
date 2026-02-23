@@ -117,13 +117,64 @@ public class QuizOperation {
     }
 
     // READ questions by quiz
-    public Cursor getQuestionsByQuiz(int quizId) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.rawQuery(
-			"SELECT * FROM question WHERE quiz_id = ?",
-			new String[]{String.valueOf(quizId)}
-        );
-    }
+	public List<Question> getQuestionsByQuizId(int quizId) {
+		List<Question> questionList = new ArrayList<>();
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+		// Define columns to fetch from question table
+		String[] questionColumns = {"id", "question_text", "answer"};
+
+		// Use query() instead of rawQuery
+		Cursor cursor = db.query(
+            "question",                 // Table name
+            questionColumns,            // Columns to return
+            "quiz_id = ?",              // WHERE clause
+            new String[]{String.valueOf(quizId)}, // WHERE args
+            null, null, null            // groupBy, having, orderBy
+		);
+
+		if (cursor != null && cursor.moveToFirst()) {
+			do {
+				int id = cursor.getInt(cursor.getColumnIndex("id"));
+				String text = cursor.getString(cursor.getColumnIndex("question_text"));
+				String answer = cursor.getString(cursor.getColumnIndex("answer"));
+
+				// Fetch options using query() as well
+				String[] optionColumns = {"option_text"};
+				String op1 = "", op2 = "", op3 = "", op4 = "";
+
+				Cursor optionCursor = db.query(
+                    "option",
+                    optionColumns,
+                    "question_id = ?",
+                    new String[]{String.valueOf(id)},
+                    null, null,
+                    "id ASC" // order by id to keep option order
+				);
+
+				if (optionCursor != null && optionCursor.moveToFirst()) {
+					int count = 0;
+					do {
+						String optionText = optionCursor.getString(optionCursor.getColumnIndex("option_text"));
+						if (count == 0) op1 = optionText;
+						else if (count == 1) op2 = optionText;
+						else if (count == 2) op3 = optionText;
+						else if (count == 3) op4 = optionText;
+						count++;
+					} while (optionCursor.moveToNext() && count < 4);
+					optionCursor.close();
+				}
+
+				Question question = new Question(id, text, op1, op2, op3, op4, answer);
+				questionList.add(question);
+
+			} while (cursor.moveToNext());
+			cursor.close();
+		}
+
+		db.close();
+		return questionList;
+	}
 
     // READ single question
     public Cursor getQuestionById(int questionId) {

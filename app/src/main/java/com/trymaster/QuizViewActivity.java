@@ -16,15 +16,17 @@ import android.widget.*;
 import android.content.Context;
 import java.util.Map;
 import java.util.HashMap;
+import com.trymaster.database.*;
 
 public class QuizViewActivity extends AppCompatActivity
 {
 
+	QuizOperation quiz_op;
 	int nextQuestionIndex;
 	int second,minute;
 	Iterator<Question> it;
 	
-	List<Question> quiz;
+	List<Question> questionList;
 	Map<Integer,String> answer;
 	
 	TextView tv_time_sec,tv_time_min;
@@ -43,16 +45,23 @@ public class QuizViewActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 	
-		nextQuestionIndex=0;
-		answer=new HashMap<>();
-		quiz=new ArrayList<>();
-		quiz.add(new Question(1,"who is president of Nigeria","Bola","bukhari","Atiku","Rabiu","Bola"));
-		quiz.add(new Question(2,"What Year of Independent","1998","1940","1906","1960","1960"));
-		quiz.add(new Question(3,"Which Year did bukhari become president","1998","2016","1906","1960","2016"));
-		quiz.add(new Question(4,"Which year are we now","2025","1940","1906","1960","2025"));
+		
+		
+		
+//		quiz.add(new Question(1,"who is president of Nigeria","Bola","bukhari","Atiku","Rabiu","Bola"));
+//		quiz.add(new Question(2,"What Year of Independent","1998","1940","1906","1960","1960"));
+//		quiz.add(new Question(3,"Which Year did bukhari become president","1998","2016","1906","1960","2016"));
+//		quiz.add(new Question(4,"Which year are we now","2025","1940","1906","1960","2025"));
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quiz_view);
+		
+
+		nextQuestionIndex=0;
+		answer=new HashMap<>();
+
+		quiz_op=new QuizOperation(this);
+		questionList=quiz_op.getQuestionsByQuizId(1);
 		
 		questionText=findViewById(R.id.tv_question_text);
 		questionNumber=findViewById(R.id.tv_question_number);
@@ -84,13 +93,13 @@ public class QuizViewActivity extends AppCompatActivity
 
 					String selectedText = radioButton.getText().toString();
 
-					Toast.makeText(ctx, selectedText, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(ctx, selectedText, Toast.LENGTH_SHORT).show();
 
-					Question q = quiz.get(nextQuestionIndex);
+					Question q = questionList.get(nextQuestionIndex);
 
 					// put() handles both insert and update
 					answer.put(q.getId(), selectedText);
-					radioGroup.clearCheck();
+					//radioGroup.clearCheck();
 				}
 			});
 		
@@ -127,7 +136,7 @@ public class QuizViewActivity extends AppCompatActivity
 
 					if (nextQuestionIndex > 0) {
 						nextQuestionIndex--;
-						updateView(quiz.get(nextQuestionIndex));
+						updateView(questionList.get(nextQuestionIndex));
 					} else {
 						Toast.makeText(ctx, "First Question", Toast.LENGTH_SHORT).show();
 					}
@@ -140,9 +149,12 @@ public class QuizViewActivity extends AppCompatActivity
 		next_button.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View p1) {
-					if (nextQuestionIndex < quiz.size() - 1) {
+					String answer=(questionList.get(nextQuestionIndex).getAnswer());
+					
+					Toast.makeText(p1.getContext(),"The Answer is: "+answer,100).show();
+					if (nextQuestionIndex < questionList.size() - 1) {
 						nextQuestionIndex++;
-						updateView(quiz.get(nextQuestionIndex));
+						updateView(questionList.get(nextQuestionIndex));
 					} else {
 						finishQuiz();
 						//Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
@@ -197,16 +209,16 @@ public class QuizViewActivity extends AppCompatActivity
 
 		int score = 0;
 
-		for (Question q : quiz) {
+		for (Question q : questionList) {
 			if (answer.containsKey(q.getId())) {
-				/*if (answer.get(q.getId()).equals(q.getAnswer())) {
+				if (answer.get(q.getId()).equals(q.getAnswer())) {
 					score++;
-				}*/
+				}
 			}
 		}
 
 		Toast.makeText(ctx,
-					   "Quiz Finished\nScore: " + score + "/" + quiz.size(),
+					   "Quiz Finished\nScore: " + score + "/" + questionList.size(),
 					   Toast.LENGTH_LONG).show();
 	}
 

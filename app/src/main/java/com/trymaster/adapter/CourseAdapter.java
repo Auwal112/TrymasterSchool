@@ -10,13 +10,6 @@ import android.widget.TextView;
 import com.trymaster.R;
 
 
-
-
-
-
-
-
-
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     private List<Course> courses;
 	private OnCourseListener onCourseListener;

@@ -68,7 +68,7 @@ public class DashBoardActivity extends AppCompatActivity {
         btnRecords.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					//startActivity(new Intent(DashboardActivity.this, RecordListActivity.class));
+					startActivity(new Intent(DashBoardActivity.this, MainActivity.class));
 				}
 			});
 
