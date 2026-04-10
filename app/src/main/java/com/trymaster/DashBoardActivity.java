@@ -13,6 +13,11 @@ import com.trymaster.database.UserOperation;
 
 public class DashBoardActivity extends AppCompatActivity {
 
+	/*
+RestApi server = new RestApi();
+server.start();
+*/
+
     TextView tvWelcome, tvRank, tvQuizCount;
     Button btnStartQuiz, btnRecords, btnLogout;
 

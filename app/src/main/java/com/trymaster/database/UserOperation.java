@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 import android.database.Cursor;
 import android.content.ContentValues;
+import com.trymaster.network.*;
 
 public class UserOperation
 {
@@ -78,6 +79,13 @@ public class UserOperation
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		db.delete("users", "id = ?", new String[] { String.valueOf(id) });
 		db.close();
+	}
+	
+	//Log user from backend
+	public boolean login(){
+		HttpClient api=new HttpClient();
+		return true;
+		
 	}
 	public boolean login(String username, String password) {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
