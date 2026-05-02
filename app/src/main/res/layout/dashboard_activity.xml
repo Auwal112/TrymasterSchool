@@ -1,57 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/background">
 
-    <!-- Welcome -->
-    <TextView
-        android:id="@+id/tv_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Rank -->
-    <TextView
-        android:id="@+id/tv_rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rank Score: 0"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Quiz count -->
-    <TextView
-        android:id="@+id/tv_quiz_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quizzes Completed: 0"
-        android:textSize="16sp"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Buttons -->
-    <Button
-        android:id="@+id/btn_start_quiz"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Quiz"
-        android:layout_marginBottom="12dp" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <Button
-        android:id="@+id/btn_records"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="My Records"
-        android:layout_marginBottom="12dp" />
+        <!-- 👋 Header -->
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome back 👋"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="20dp"/>
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let’s improve your score today"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp"/>
 
-</LinearLayout>
+        <!-- 📊 Stats Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/surface"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rank Score: 0"
+                android:textSize="18sp"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_quiz_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quizzes Completed: 0"
+                android:textSize="16sp"
+                android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+
+        <!-- 🎯 Primary Action -->
+        <Button
+            android:id="@+id/btn_start_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Start Quiz"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/primary"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 📚 Secondary Actions -->
+        <Button
+            android:id="@+id/btn_records"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="My Records"
+            android:textAllCaps="false"
+            android:textColor="@color/primary"
+            android:backgroundTint="@color/surface"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="@color/error"
+            android:backgroundTint="@color/surface"/>
+
+    </LinearLayout>
+</ScrollView>

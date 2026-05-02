@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		setContentView(R.layout.main_view);
 		
 		adsBanner=findViewById(R.id.adsbanner);
-		add_quiz_btn=findViewById(R.id.add_course);
-		adsDescription=findViewById(R.id.adsdescription);
+		//add_quiz_btn=findViewById(R.id.add_quiz);
+		//adsDescription=findViewById(R.id.adsdescription);
 		
 		SessionManager session = new SessionManager(MainActivity.this);
 		String username=session.getUsername();
-		adsDescription.setText(username);
-		quizRecyclerView = findViewById(R.id.course_rcv);
+		//adsDescription.setText(username);
+		quizRecyclerView = findViewById(R.id.quiz_rcv);
 		
 		
 		// Get courses from database
@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		quizRecyclerView.setAdapter(courseAdapter);
 		quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		
-		add_quiz_btn.setOnClickListener(new OnClickListener(){
+		/*add_quiz_btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
 				intent=new Intent(v.getContext(),AddQuizActivity.class);
 				startActivity(intent);
 				
 			}
-		});
+		});*/
 	
 		}//end of Oncreate method
 	//respond to click when recyler item is beign click

@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-	<color name="colorAsh">#f5f5f5</color>
-	<color name="colorDarkAsh">#CACEDC</color>
+
+    <!-- Primary brand color -->
+    <color name="primary">#4F46E5</color>   <!-- Indigo -->
+    <color name="primary_dark">#3730A3</color>
+
+    <!-- Accent (used for highlights, links) -->
+    <color name="accent">#22C55E</color>    <!-- Green -->
+
+    <!-- Background -->
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#F9FAFB</color>
+
+    <!-- Text -->
+	<!-- ✍️ Text Colors (FIXED - IMPORTANT) -->
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+
+    <!-- 📚 Category / Tags -->
+    <color name="category_color">#4F46E5</color>
+
+    <!-- States -->
+    <color name="error">#EF4444</color>
+
 </resources>

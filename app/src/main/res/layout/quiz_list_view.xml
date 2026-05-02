@@ -15,18 +15,18 @@
         android:text="Quiz Title"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#212121"
+        android:textColor="@color/text_primary"
         android:ellipsize="end"
         android:maxLines="1"/>
 
-    <!-- Quiz Category -->
+    <!-- Quiz Category with color coding -->
     <TextView
         android:id="@+id/tvQuizCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mathematics"
         android:textSize="14sp"
-        android:textColor="#757575"
+        android:textColor="@color/category_color"
         android:layout_marginTop="4dp"/>
 
     <!-- Total Questions -->
@@ -36,17 +36,37 @@
         android:layout_height="wrap_content"
         android:text="10 Questions"
         android:textSize="14sp"
-        android:textColor="#757575"
+        android:textColor="@color/text_secondary"
         android:layout_marginTop="2dp"/>
-	
-	
-	<!-- Quiz Description -->
+
+    <!-- Quiz Description -->
     <TextView
         android:id="@+id/tvQuizDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description...."
         android:textSize="14sp"
-        android:textColor="#757575"
+        android:textColor="@color/text_secondary"
         android:layout_marginTop="4dp"/>
+
+    <!-- Quiz Difficulty Level (New) -->
+    <TextView
+        android:id="@+id/tvQuizDifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Difficulty: Medium"
+        android:textSize="14sp"
+        android:textColor="#FF7043" 
+        android:layout_marginTop="4dp"/>
+
+    <!-- Start Button -->
+    <Button
+        android:id="@+id/btnStartQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Start Quiz"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/primary"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>

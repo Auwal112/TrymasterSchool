@@ -1,75 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="150dp"
-			android:id="@+id/adsbanner"/>
+        <!-- 👋 HEADER -->
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi there 👋"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="20dp"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Ads Banner"
-			android:textAppearance="?android:attr/textAppearanceSmall"
-			android:textSize="13sp"
-			android:textColor="#005EFB"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ready to test your knowledge today?"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="20dp"/>
 
-	</LinearLayout>
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Large Text"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:id="@+id/adsdescription"/>
-	
+        <!-- ⭐ RECOMMENDED QUIZ CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:background="@drawable/card"
-		android:layout_margin="10dp"
-		style="@style/CardHeader">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 Recommended Quiz"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"/>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			style="@style/CardHeader"
-			android:background="@drawable/textline"
-			android:padding="10dp">
+            <TextView
+                android:id="@+id/tv_recommended_quiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Math Basics Challenge"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="8dp"/>
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Enrolled Courses"
-				android:textSize="18sp"
-				android:textStyle="bold"/>
+            <Button
+                android:id="@+id/btn_start_recommended"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Start Now"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/primary"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
 
-		</LinearLayout>
+        <!-- 📚 CATEGORY SECTION (Optional but powerful) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categories"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="10dp"/>
 
-		<android.support.v7.widget.RecyclerView
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:id="@+id/course_rcv">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
 
-		</android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-	</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Math"
+                    android:padding="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/surface"
+                    android:textColor="@color/primary"/>
 
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Add Course"
-		android:id="@+id/add_course"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Science"
+                    android:padding="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/surface"
+                    android:textColor="@color/primary"/>
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programming"
+                    android:padding="10dp"
+                    android:background="@color/surface"
+                    android:textColor="@color/primary"/>
+            </LinearLayout>
+        </HorizontalScrollView>
 
+        <!-- 📚 QUIZ LIST -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Quizzes"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/quiz_rcv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"/>
+
+        <!-- 🎯 QUICK ACTION -->
+        <Button
+            android:id="@+id/btn_random_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Start Random Quiz"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/accent"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

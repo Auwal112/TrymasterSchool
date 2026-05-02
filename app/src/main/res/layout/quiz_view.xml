@@ -1,144 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="16dp">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:padding="16dp"
-		android:background="#f4f5f5">
+    <!-- Top Bar (Question Number & Timer) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:background="@color/surface"
+        android:gravity="center_vertical">
 
-		<TextView
-			android:id="@+id/tv_question_number"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="Question 1/10"
-			android:textColor="#582633"
-			android:textSize="18sp"
-			android:layout_gravity="center_vertical|center_horizontal"/>
+        <!-- Question Number -->
+        <TextView
+            android:id="@+id/tv_question_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Question 1/10"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
 
-		<LinearLayout
-			android:layout_width="100dp"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+        <!-- Timer -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-			<TextView
-				android:id="@+id/tv_quiz_time_min"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:text="00"
-				android:textColor="#FFFFFF"
-				android:textSize="18sp"
-				android:gravity="center_vertical|center_horizontal"
-				android:layout_gravity="center_vertical|center_horizontal"/>
+            <TextView
+                android:id="@+id/tv_quiz_time_min"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00"
+                android:textColor="@color/accent"
+                android:textSize="18sp"
+                android:gravity="center"/>
 
-			<TextView
-				
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:text=":"
-				android:textColor="#FFFFFF"
-				android:textSize="30sp"
-				android:gravity="center_vertical|center_horizontal"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=":"
+                android:textColor="@color/accent"
+                android:textSize="30sp"
+                android:gravity="center"/>
 
-			<TextView
-				android:id="@+id/tv_quiz_time_sec"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:text="00"
-				android:textColor="#FFFFFF"
-				android:textSize="18sp"
-				android:gravity="center_vertical|center_horizontal"
-				android:layout_gravity="center_vertical|center_horizontal"/>
+            <TextView
+                android:id="@+id/tv_quiz_time_sec"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00"
+                android:textColor="@color/accent"
+                android:textSize="18sp"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
 
-		</LinearLayout>
+    <!-- Question Text -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_question_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the capital of France?"
+            android:textSize="24sp"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
 
-	</LinearLayout>
+    <!-- Answer Options -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+        <RadioGroup
+            android:id="@+id/rg_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/rb_option1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paris"
+                android:textColor="@color/text_primary"
+                android:padding="12dp"
+                android:background="@drawable/radio_button_selector"/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:padding="16dp"
-		android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/rb_option2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="London"
+                android:textColor="@color/text_primary"
+                android:padding="12dp"
+                android:background="@drawable/radio_button_selector"/>
 
-		<TextView
-			android:id="@+id/tv_question_text"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="What is the capital of France?"
-			android:textSize="24sp"/>
+            <RadioButton
+                android:id="@+id/rb_option3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Berlin"
+                android:textColor="@color/text_primary"
+                android:padding="12dp"
+                android:background="@drawable/radio_button_selector"/>
 
-	</LinearLayout>
+            <RadioButton
+                android:id="@+id/rb_option4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rome"
+                android:textColor="@color/text_primary"
+                android:padding="12dp"
+                android:background="@drawable/radio_button_selector"/>
+        </RadioGroup>
+    </LinearLayout>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:padding="16dp">
+    <!-- Navigation Buttons (Prev & Next) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="16dp"
+        android:gravity="center_horizontal">
 
-		<RadioGroup
-			android:id="@+id/rg_options"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_prev"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Prev"
+            android:backgroundTint="@color/surface"
+            android:textColor="@color/primary"
+            android:textSize="16sp"
+            android:layout_marginEnd="8dp"
+            />
 
-			<RadioButton
-				android:id="@+id/rb_option1"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="Paris"/>
-
-			<RadioButton
-				android:id="@+id/rb_option2"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="London"/>
-
-			<RadioButton
-				android:id="@+id/rb_option3"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="Berlin"/>
-
-			<RadioButton
-				android:id="@+id/rb_option4"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="Rome"/>
-
-		</RadioGroup>
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:padding="16dp">
-
-		<Button
-			android:id="@+id/btn_prev"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="Prev"/>
-
-		<Button
-			android:id="@+id/btn_next"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="Next"/>
-
-	</LinearLayout>
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Next"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            />
+    </LinearLayout>
 
 </LinearLayout>
-
