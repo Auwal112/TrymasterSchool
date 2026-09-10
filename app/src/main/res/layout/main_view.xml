@@ -1,146 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
 
-        <!-- 👋 HEADER -->
-        <TextView
-            android:id="@+id/tv_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hi there 👋"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary"
-            android:layout_marginTop="20dp"/>
+	<android.support.constraint.ConstraintLayout
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ready to test your knowledge today?"
-            android:textSize="14sp"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="20dp"/>
+		<FrameLayout
+			android:id="@+id/fragmentFrame"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/activity_horizontal_margin"
+			android:layout_marginLeft="@dimen/activity_horizontal_margin"
+			android:layout_marginTop="@dimen/activity_vertical_margin"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+		</FrameLayout>
+		
+		<android.support.design.widget.BottomNavigationView
+			android:id="@+id/navigation"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="0dp"
+			android:layout_marginStart="0dp"
+			android:background="?android:attr/windowBackground"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:menu="@menu/button_nav_menu" />
 
-        <!-- ⭐ RECOMMENDED QUIZ CARD -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/surface"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔥 Recommended Quiz"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/text_primary"/>
 
-            <TextView
-                android:id="@+id/tv_recommended_quiz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Math Basics Challenge"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/primary"
-                android:layout_marginTop="8dp"/>
 
-            <Button
-                android:id="@+id/btn_start_recommended"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Start Now"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/primary"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp"/>
-        </LinearLayout>
+	</android.support.constraint.ConstraintLayout>
 
-        <!-- 📚 CATEGORY SECTION (Optional but powerful) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Categories"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="10dp"/>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+</LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Math"
-                    android:padding="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@color/surface"
-                    android:textColor="@color/primary"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Science"
-                    android:padding="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@color/surface"
-                    android:textColor="@color/primary"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Programming"
-                    android:padding="10dp"
-                    android:background="@color/surface"
-                    android:textColor="@color/primary"/>
-            </LinearLayout>
-        </HorizontalScrollView>
 
-        <!-- 📚 QUIZ LIST -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Quizzes"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="10dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/quiz_rcv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
-
-        <!-- 🎯 QUICK ACTION -->
-        <Button
-            android:id="@+id/btn_random_quiz"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Start Random Quiz"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="@color/accent"
-            android:layout_marginTop="20dp"/>
-
-    </LinearLayout>
-</ScrollView>

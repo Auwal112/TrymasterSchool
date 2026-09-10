@@ -6,10 +6,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.content.Intent;
 
+
 import android.support.v7.app.AppCompatActivity;
 
 import com.trymaster.session.SessionManager;
 import com.trymaster.database.UserOperation;
+
 
 public class DashBoardActivity extends AppCompatActivity {
 
@@ -23,11 +25,15 @@ server.start();
 
     SessionManager session;
     UserOperation userOperation;
+	
+	
+	
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_activity);
+        setContentView(R.layout.dashboard_fragment_view);
 
         session = new SessionManager(this);
 
@@ -38,6 +44,7 @@ server.start();
             return;
         }
 
+		
         userOperation = new UserOperation(this);
 
         // Views
@@ -49,6 +56,9 @@ server.start();
         btnRecords   = findViewById(R.id.btn_records);
         btnLogout    = findViewById(R.id.btn_logout);
 
+		
+		
+    
         // Session data
         int studentId = session.getUserId();
         String username = session.getUsername();

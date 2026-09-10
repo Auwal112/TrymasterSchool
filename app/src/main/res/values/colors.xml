@@ -2,14 +2,14 @@
 <resources>
 
     <!-- Primary brand color -->
-    <color name="primary">#4F46E5</color>   <!-- Indigo -->
+    <color name="primary">#FF0000FF</color>   <!-- Blue -->
     <color name="primary_dark">#3730A3</color>
 
     <!-- Accent (used for highlights, links) -->
     <color name="accent">#22C55E</color>    <!-- Green -->
 
     <!-- Background -->
-    <color name="background">#FFFFFF</color>
+    <color name="background">#10FFECC1</color>
     <color name="surface">#F9FAFB</color>
 
     <!-- Text -->

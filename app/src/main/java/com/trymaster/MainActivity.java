@@ -17,18 +17,61 @@ import android.view.View;
 import com.trymaster.database.*;
 import com.trymaster.session.*;
 import com.trymaster.adapter.*;
+import android.support.design.widget.*;
+import android.view.MenuItem;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 
 
 public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQuizListener
 {
-	List<Quiz> quizList;
-	UserOperation user_op;
+
+	@Override
+	public void onQuizClick(int position)
+	{
+		// TODO: Implement this method
+	}
 	
-	ImageView adsBanner;
-	TextView adsDescription;
-	RecyclerView quizRecyclerView;
-	Intent intent;
-	Button add_quiz_btn;
+//	List<Quiz> quizList;
+//	UserOperation user_op;
+//	
+//	ImageView adsBanner;
+//	TextView adsDescription;
+//	RecyclerView quizRecyclerView;
+//	Intent intent;
+//	Button add_quiz_btn;
+//	
+	
+	FragmentTransaction ft;
+	FrameLayout fragment;
+	
+	private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+	= new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+					ft = getSupportFragmentManager().beginTransaction(); 
+					ft.replace(R.id.fragmentFrame, new HomeFragmentActivity());
+					ft.commit();
+                    return true;
+                case R.id.nav_explore:
+					ft = getSupportFragmentManager().beginTransaction(); 
+					ft.replace(R.id.fragmentFrame, new ExploreFragmentActivity());
+					ft.commit();
+					return true;
+				
+
+				case R.id.nav_dashboard:
+					ft = getSupportFragmentManager().beginTransaction(); 
+					ft.replace(R.id.fragmentFrame, new DashBoardFragmentActivity());
+					ft.commit();
+                    return true;
+            }
+            return false;
+        }
+    };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -37,49 +80,60 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_view);
 		
-		adsBanner=findViewById(R.id.adsbanner);
-		//add_quiz_btn=findViewById(R.id.add_quiz);
-		//adsDescription=findViewById(R.id.adsdescription);
-		
-		SessionManager session = new SessionManager(MainActivity.this);
-		String username=session.getUsername();
+//		adsBanner=findViewById(R.id.adsbanner);
+//		//add_quiz_btn=findViewById(R.id.add_quiz);
+//		//adsDescription=findViewById(R.id.adsdescription);
+//		
+//		SessionManager session = new SessionManager(MainActivity.this);
+//		String username=session.getUsername();
 		//adsDescription.setText(username);
-		quizRecyclerView = findViewById(R.id.quiz_rcv);
+//		quizRecyclerView = findViewById(R.id.quiz_rcv);
+//		
+//		o
+//		// Get courses from database
+//		QuizOperation quizop = new QuizOperation(this);
+//		quizList=quizop.getAllQuiz();
+//	
+//		QuizAdapter courseAdapter = new QuizAdapter(quizList,this);
+//		quizRecyclerView.setAdapter(courseAdapter);
+//		quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//		
+//		/*add_quiz_btn.setOnClickListener(new OnClickListener(){
+//			@Override
+//			public void onClick(View v){
+//				intent=new Intent(v.getContext(),AddQuizActivity.class);
+//				startActivity(intent);
+//				
+//			}
+//		});
 		
-		
-		// Get courses from database
-		QuizOperation quizop = new QuizOperation(this);
-		quizList=quizop.getAllQuiz();
 	
-		QuizAdapter courseAdapter = new QuizAdapter(quizList,this);
-		quizRecyclerView.setAdapter(courseAdapter);
-		quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		
-		/*add_quiz_btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v){
-				intent=new Intent(v.getContext(),AddQuizActivity.class);
-				startActivity(intent);
-				
-			}
-		});*/
+
+		
+		ft = getSupportFragmentManager().beginTransaction(); 
+		ft.replace(R.id.fragmentFrame, new HomeFragmentActivity());
+		ft.commit();
+		BottomNavigationView navigation = findViewById(R.id.navigation);
+		navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+		
 	
 		}//end of Oncreate method
 	//respond to click when recyler item is beign click
-	@Override
-	public void onQuizClick(int position)
-	{
-		// TODO: Implement this method
-		int q=(int) quizList.get(position).getId();
-		user_op=new UserOperation(this);
-		if(user_op.user_has_done(q)){
-			Toast.makeText(this,"You have alredy done this quiz",100).show();
-		}else{
-			intent=new Intent(this,QuizViewActivity.class);
-			startActivity(intent);
-		}
-		
-	}
+//	@Override
+//	public void onQuizClick(int position)
+//	{
+//		 TODO: Implement this method
+//		int q=(int) quizList.get(position).getId();
+//		user_op=new UserOperation(this);
+//		if(user_op.user_has_done(q)){
+//			Toast.makeText(this,"You have alredy done this quiz",100).show();
+//		}else{
+//			intent=new Intent(this,QuizViewActivity.class);
+//			startActivity(intent);
+//		}
+//		
+//	}
 	
 	
 	
