@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		// TODO: Implement this method
 	}
 	
-//	List<Quiz> quizList;
+//	
 //	UserOperation user_op;
 //	
 //	ImageView adsBanner;
 //	TextView adsDescription;
-//	RecyclerView quizRecyclerView;
+
 //	Intent intent;
 //	Button add_quiz_btn;
 //	
@@ -87,16 +87,12 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 //		SessionManager session = new SessionManager(MainActivity.this);
 //		String username=session.getUsername();
 		//adsDescription.setText(username);
-//		quizRecyclerView = findViewById(R.id.quiz_rcv);
+//		
 //		
 //		o
-//		// Get courses from database
-//		QuizOperation quizop = new QuizOperation(this);
-//		quizList=quizop.getAllQuiz();
+
 //	
-//		QuizAdapter courseAdapter = new QuizAdapter(quizList,this);
-//		quizRecyclerView.setAdapter(courseAdapter);
-//		quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//		
 //		
 //		/*add_quiz_btn.setOnClickListener(new OnClickListener(){
 //			@Override
@@ -119,21 +115,7 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.OnQui
 		
 	
 		}//end of Oncreate method
-	//respond to click when recyler item is beign click
-//	@Override
-//	public void onQuizClick(int position)
-//	{
-//		 TODO: Implement this method
-//		int q=(int) quizList.get(position).getId();
-//		user_op=new UserOperation(this);
-//		if(user_op.user_has_done(q)){
-//			Toast.makeText(this,"You have alredy done this quiz",100).show();
-//		}else{
-//			intent=new Intent(this,QuizViewActivity.class);
-//			startActivity(intent);
-//		}
-//		
-//	}
+	
 	
 	
 	

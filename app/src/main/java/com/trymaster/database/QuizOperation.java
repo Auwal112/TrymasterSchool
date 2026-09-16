@@ -34,8 +34,8 @@ public class QuizOperation {
     }
 
 	// Get All Quiz
-	public List<Quiz> getAllQuiz() {
-    List<Quiz> quizList = new ArrayList<>();
+	public ArrayList<Quiz> getAllQuiz() {
+    ArrayList<Quiz> quizList = new ArrayList<>();
 
     SQLiteDatabase db = dbHelper.getReadableDatabase();
     Cursor cursor = db.rawQuery("SELECT * FROM quiz", null);

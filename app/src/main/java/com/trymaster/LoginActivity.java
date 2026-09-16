@@ -65,7 +65,7 @@ public class LoginActivity extends Activity {
 							int id=userOperation.getUserIdByUsername(username);
 							session.createLoginSession(id,username);
 							// go to dashboard
-							Intent intent = new Intent(LoginActivity.this, DashBoardActivity.class);
+							Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 							startActivity(intent);
 							finish();
 
