@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import com.trymaster.database.Quiz;
-import com.trymaster.database.QuizOperation;
+//import com.trymaster.database.QuizOperation;
 import com.trymaster.adapter.*;
 import android.support.v7.widget.*;
 import android.util.*;
 import android.widget.*;
 import android.text.*;
 import java.util.*;
+import com.trymaster.database.*;
 
 public class ExploreFragmentActivity extends Fragment implements QuizAdapter.OnQuizListener
 {
@@ -22,6 +23,7 @@ public class ExploreFragmentActivity extends Fragment implements QuizAdapter.OnQ
 	Intent i;
 	RecyclerView quizRecyclerView;
 	ArrayList<Quiz> quizList;
+	Quizdata quizdata;
 	EditText searchQuiz;
 
 	@Override
@@ -42,11 +44,11 @@ public class ExploreFragmentActivity extends Fragment implements QuizAdapter.OnQ
 			new LinearLayoutManager(view.getContext())
 		);
 
-		QuizOperation quizop = new QuizOperation(view.getContext());
+		//QuizOperation quizop = new QuizOperation(view.getContext());
 
-		quizList = quizop.getAllQuiz();
+		quizList = quizdata.getQuizList();
 
-		Log.d("EXPLORE", "Quiz count = " + quizList.size());
+		//Log.d("EXPLORE", "Quiz count = " + quizList.size());
 
 		QuizAdapter quizAdapter =
 			new QuizAdapter(quizList,this);
@@ -64,7 +66,7 @@ public class ExploreFragmentActivity extends Fragment implements QuizAdapter.OnQ
 			new LinearLayoutManager(view.getContext())
 		);
 
-		QuizOperation quizop2= new QuizOperation(view.getContext());
+		//QuizOperation quizop2= new QuizOperation(view.getContext());
 
 		//quizList = quizop2.getAllQuiz();
 
@@ -105,7 +107,15 @@ public class ExploreFragmentActivity extends Fragment implements QuizAdapter.OnQ
 	@Override
 	public void onQuizClick(int position)
 	{
+		
+		float qid= quizList.get(position).getId();
+		String qtitle= quizList.get(position).getTitle();
+		Toast.makeText(this.getContext(),qtitle+"",100).show();
+		
 		i=new Intent(this.getContext(),QuizViewActivity.class);
+		//here i use position instead of id 
+		i.putExtra("quiz_id",position); 
+		i.putExtra("quiz_title",qtitle);
 		startActivity(i);
 		
 		

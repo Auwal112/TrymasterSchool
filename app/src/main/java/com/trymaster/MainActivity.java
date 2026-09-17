@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 import android.support.v7.widget.LinearLayoutManager;
 import com.trymaster.adapter.CourseAdapter;
-import com.trymaster.database.CourseOperation;
+//import com.trymaster.database.CourseOperation;
 import com.trymaster.database.Course;
 import android.widget.*;
 import android.content.Intent;

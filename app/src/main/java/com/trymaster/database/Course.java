@@ -6,15 +6,17 @@ public class Course
 	private int id;
 	private String title;
 	private String description;
-	private String videoUrl;
+	private String goal;
 
 	public Course(){}
-	public Course(int ids,String title,String desc,String url){
+	public Course(int ids,String title,String desc,String goal){
 		this.id=ids;
 		this.title=title;
 		this.description=desc;
-		this.videoUrl=url;
+		this.goal=goal;
 	}
+
+	
 
 	public void setId(int id)
 	{
@@ -46,14 +48,14 @@ public class Course
 		return description;
 	}
 
-	public void setVideoUrl(String videoUrl)
+	public void setGoal(String goal)
 	{
-		this.videoUrl = videoUrl;
+		this.goal = goal;
 	}
 
-	public String getVideoUrl()
+	public String getGoal()
 	{
-		return videoUrl;
+		return goal;
 	}
 	
 }

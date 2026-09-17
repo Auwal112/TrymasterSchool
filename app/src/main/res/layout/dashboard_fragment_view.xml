@@ -1,98 +1,411 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
- 
+    android:background="@color/background"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="16dp">
 
-        <!-- 👋 Header -->
-        <TextView
-            android:id="@+id/tv_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome back 👋"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary"
-            android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Let’s improve your score today"
-            android:textSize="14sp"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="24dp"/>
+        <!-- ========================================= -->
+        <!-- HEADER                                    -->
+        <!-- ========================================= -->
 
-        <!-- 📊 Stats Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/surface"
-            android:padding="16dp"
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:id="@+id/tv_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rank Score: 0"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="8dp"/>
+                android:text="My Dashboard"
+                android:textColor="@android:color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/tv_quiz_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quizzes Completed: 0"
-                android:textSize="16sp"
-                android:textColor="@color/text_secondary"/>
+                android:text="Track your learning progress"
+                android:textColor="#777777"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
+
         </LinearLayout>
 
-        <!-- 🎯 Primary Action -->
-        <Button
-            android:id="@+id/btn_start_quiz"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Start Quiz"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="@color/primary"
-            android:layout_marginBottom="16dp"/>
 
-        <!-- 📚 Secondary Actions -->
-        <Button
-            android:id="@+id/btn_records"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="My Records"
-            android:textAllCaps="false"
-            android:textColor="@color/primary"
-            android:backgroundTint="@color/surface"
-            android:layout_marginBottom="16dp"/>
+        <!-- ========================================= -->
+        <!-- 1. USER STATISTICS                       -->
+        <!-- ========================================= -->
 
-        <Button
-            android:id="@+id/btn_logout"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Statistics"
+            android:textColor="@android:color/black"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+
+        <!-- Statistics row 1 -->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Logout"
-            android:textAllCaps="false"
-            android:textColor="@color/error"
-            android:backgroundTint="@color/surface"/>
-		
-		
-		
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- QUIZZES -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="95dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/dashboard_stat_card"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stat_quizzes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quizzes"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+            <!-- COURSES -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="95dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/dashboard_stat_card"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stat_courses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Courses"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Statistics row 2 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <!-- BADGES -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="95dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/dashboard_stat_card"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stat_badges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Badges"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+            <!-- CERTIFICATES -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="95dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/dashboard_stat_card"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stat_certificates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Certificates"
+                    android:textColor="#777777"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- STREAK -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/dashboard_stat_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Learning Streak"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/stat_streak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7 days"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+        <!-- ========================================= -->
+        <!-- 2. CURRENT COURSES                       -->
+        <!-- ========================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Current Courses"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/view_all_courses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="#582633"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/course_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:clipToPadding="false"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:overScrollMode="never"/>
+
+
+
+        <!-- ========================================= -->
+        <!-- 3. CERTIFICATIONS                        -->
+        <!-- ========================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Certifications"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/view_all_certificates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="#582633"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/certificate_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:clipToPadding="false"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:overScrollMode="never"/>
+
+
+
+        <!-- ========================================= -->
+        <!-- 4. BADGES                                -->
+        <!-- ========================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Badges"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/view_all_badges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="#582633"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/badge_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:clipToPadding="false"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:overScrollMode="never"/>
+
+
+
+        <!-- ========================================= -->
+        <!-- 5. RECENT QUIZZES                        -->
+        <!-- ========================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Recent Quizzes"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/view_all_quizzes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View all"
+                android:textColor="#582633"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/quiz_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:clipToPadding="false"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:overScrollMode="never"/>
+
+
+        <!-- Bottom spacing -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
 
     </LinearLayout>
-	
-	
-	
-	
+
 </ScrollView>

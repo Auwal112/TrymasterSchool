@@ -1,5 +1,7 @@
 package com.trymaster.database;
 
+
+
 public class Question
 {
 	int id;
@@ -76,3 +78,8 @@ public class Question
 	{
 		return text;
 	}}
+	
+	
+	
+	
+	

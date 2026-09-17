@@ -18,17 +18,28 @@ import java.util.Map;
 import java.util.HashMap;
 import com.trymaster.database.*;
 import com.trymaster.session.SessionManager;
+import com.trymaster.utils.*;
+import org.json.*;
+import android.util.*;
+import android.content.*;
 
 public class QuizViewActivity extends AppCompatActivity
 {
 
-	//High space object
-	QuizOperation quiz_op;
-	UserOperation user_op;
+	
+	//Sqlite management class
+	//QuizOperation quiz_op;
+	//UserOperation user_op;
+	
 	SessionManager session;
-	List<Question> questionList;
+	//list of question
+	ArrayList<Question> questionList;
+	//store questionid and answer selected by user
 	Map<Integer,String> answer;
+	
 	Iterator<Question> it;
+	//Store progress
+	QuizProgressStore progresstore;
 	
 	//primitive datatype
 	int nextQuestionIndex;
@@ -53,23 +64,44 @@ public class QuizViewActivity extends AppCompatActivity
 	{
 	
 		
-		session = new SessionManager(this);
-		user_op=new UserOperation(this);
-		quiz_op=new QuizOperation(this);
-		answer=new HashMap<>();
-		
-//		quiz.add(new Question(1,"who is president of Nigeria","Bola","bukhari","Atiku","Rabiu","Bola"));
-//		quiz.add(new Question(2,"What Year of Independent","1998","1940","1906","1960","1960"));
-//		quiz.add(new Question(3,"Which Year did bukhari become president","1998","2016","1906","1960","2016"));
-//		quiz.add(new Question(4,"Which year are we now","2025","1940","1906","1960","2025"));
-		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quiz_view);
+		ctx=this;
+		session = new SessionManager(this);
+		//user_op=new UserOperation(this);
+		//quiz_op=new QuizOperation(this);
+		
+		answer=new HashMap<>();
+		
+		
+		//retrive quiz id from intent
+		Intent i=getIntent();
+		int quiz_id=i.getIntExtra("quiz_id",-1);
+//		if(quiz_id<0) {
+//			quiz_id=0;
+//			Toast.makeText(this,"quiz id -1",100).show();
+//		}else{
+//			Toast.makeText(this,"quiz id>-1",100).show();
+//		}
+		String quiz_title=i.getStringExtra("quiz_title");
+		Log.d("pos",quiz_title+"");
+		//Toast.makeText(this,quiz_id+"",100).show();
+		//fetch question on a given quiz id
+		questionList=Quizdata.getQuizList().get(quiz_id).getQuestions();
+
+		
+
+	
+		//Time
+		second=60;	minute=40;
+		
 		
 		// we start at question in index 0
 		nextQuestionIndex=0;
-		//fetch question on a given quiz id
-		questionList=quiz_op.getQuestionsByQuizId(1);
+		
+		//quiz title
+		
+		
 		
 		//Initialize user interaction widget
 		questionText=findViewById(R.id.tv_question_text);
@@ -79,15 +111,105 @@ public class QuizViewActivity extends AppCompatActivity
 		op3=findViewById(R.id.rb_option3);
 		op4=findViewById(R.id.rb_option4);
 		
-		//Time
-		second=60;	minute=40;
+		//time and second display textview
+		tv_time_min=findViewById(R.id.tv_quiz_time_min);
+		tv_time_sec=findViewById(R.id.tv_quiz_time_sec);
+		//previus and next button
+		prev_button=findViewById(R.id.btn_prev);
+		next_button=findViewById(R.id.btn_next);
+		
+		
 		//Context
-		ctx=this;
+		;
 		//it=quiz.iterator();
 
 		//if(nextQuestionIndex<4) 	updateView(quiz.get(nextQuestionIndex));
 		
 		
+		//Store quiz info in sharepreference incase of terminating app
+		// so you can continue next time
+		progresstore=new  QuizProgressStore(this);
+		final JSONObject progress = new JSONObject();
+		try {
+
+			//progress.put("attempt_id", 1);
+			progress.put("quiz_id", quiz_id);
+			progress.put("quiz_title", quiz_title);
+			progress.put("status", "in_progress");
+			progresstore.save(progress);
+
+		}catch(JSONException e){
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//Reverse Previous question to View
+		prev_button.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+					if (nextQuestionIndex > 0) {
+						nextQuestionIndex--;
+						updateView(questionList.get(nextQuestionIndex));
+					} else {
+						Toast.makeText(ctx, "First Question", Toast.LENGTH_SHORT).show();
+					}
+					//radioGroup.clearCheck();
+				}
+				
+	
+			});
+		//Get Next Question on View
+		next_button.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View p1) {
+					//String user_answer=answer.get("")
+					//save question and user answer in memory
+					
+					if (nextQuestionIndex < questionList.size() - 1) {
+						nextQuestionIndex++;
+						updateView(questionList.get(nextQuestionIndex));
+					} else {
+						finishQuiz();
+						progresstore.clear();
+						//Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
+					}
+					//radioGroup.clearCheck();
+				}
+			});
+			
+			
+			
+			
+			
+		//Run thread to update time and second
+		final Handler handler = new Handler();
+		Runnable runnable = new Runnable() {
+			@Override
+			public void run() {
+
+				if (minute == 0 && second == 0) {
+					handler.removeCallbacks(this);
+					Toast.makeText(ctx, "Time Up!", Toast.LENGTH_LONG).show();
+					finishQuiz();
+					return;
+				}
+
+
+				time_tick();
+				handler.postDelayed(this, 1000);
+			}
+		};
+		handler.post(runnable);
+			
 		//All Option group
 		radioGroup = (RadioGroup) findViewById(R.id.rg_options);
 		radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -114,65 +236,7 @@ public class QuizViewActivity extends AppCompatActivity
 				}
 			});
 		
-		
-		
-		tv_time_min=findViewById(R.id.tv_quiz_time_min);
-		tv_time_sec=findViewById(R.id.tv_quiz_time_sec);
-		final Handler handler = new Handler();
-		Runnable runnable = new Runnable() {
-			@Override
-			public void run() {
-
-				if (minute == 0 && second == 0) {
-					handler.removeCallbacks(this);
-					Toast.makeText(ctx, "Time Up!", Toast.LENGTH_LONG).show();
-					finishQuiz();
-					return;
-				}
-				
-
-				time_tick();
-				handler.postDelayed(this, 1000);
-			}
-		};
-		handler.post(runnable);
-		
-		
-		prev_button=findViewById(R.id.btn_prev);
-		next_button=findViewById(R.id.btn_next);
-		//Reverse Previous question to View
-		prev_button.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-
-					if (nextQuestionIndex > 0) {
-						nextQuestionIndex--;
-						updateView(questionList.get(nextQuestionIndex));
-					} else {
-						Toast.makeText(ctx, "First Question", Toast.LENGTH_SHORT).show();
-					}
-					//radioGroup.clearCheck();
-				}
-				
-	
-			});
-		//Get Next Question on View
-		next_button.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View p1) {
-					String answer=(questionList.get(nextQuestionIndex).getAnswer());
-					
-					//Toast.makeText(p1.getContext(),"The Answer is: "+answer,100).show();
-					if (nextQuestionIndex < questionList.size() - 1) {
-						nextQuestionIndex++;
-						updateView(questionList.get(nextQuestionIndex));
-					} else {
-						finishQuiz();
-						//Toast.makeText(ctx, "Finish", Toast.LENGTH_SHORT).show();
-					}
-					//radioGroup.clearCheck();
-				}
-			});
+		updateView(questionList.get(nextQuestionIndex));
 
 	}
 	public void updateView(Question q) {
@@ -229,11 +293,11 @@ public class QuizViewActivity extends AppCompatActivity
 			if (answer.containsKey(q.getId()) && answer.get(q.getId()).equals(q.getAnswer()) )	score++;
 		}
 		
-		if(score>=6){
-			float done=user_op.insertRecord(stud_id,1,0,score);
-		}else{
-			Toast.makeText(ctx,"Try again boy",100).show();
-		}
+		//if(score>=6){
+			//float done=user_op.insertRecord(stud_id,1,0,score);
+		//}else{
+		//	Toast.makeText(ctx,"Try again boy",100).show();
+		//}
 		Toast.makeText(ctx,
 					   "Quiz Finished\nScore: " + score + "/" + questionList.size(),
 					   Toast.LENGTH_LONG).show();

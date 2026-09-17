@@ -18,7 +18,7 @@ public class UserOperation
 		dbHelper = new DatabaseHelper(context);
 
 	}
-	
+
 	public void insertUser(User user) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -30,7 +30,7 @@ public class UserOperation
 		db.insert("users", null, values);
 		db.close();
 	}
-	
+
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -49,7 +49,7 @@ public class UserOperation
 		db.close();
 		return users;
 	}
-	
+
 	public User getUserById(int id) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM users WHERE id = ?", new String[] { String.valueOf(id) });
@@ -64,7 +64,7 @@ public class UserOperation
 		db.close();
 		return user;
 	}
-	
+
 	public void updateUser(User user) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -74,18 +74,18 @@ public class UserOperation
 		db.update("users", values, "id = ?", new String[] { String.valueOf(user.getId()) });
 		db.close();
 	}
-	
+
 	public void deleteUser(int id) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		db.delete("users", "id = ?", new String[] { String.valueOf(id) });
 		db.close();
 	}
-	
+
 	//Log user from backend
 	public boolean login(){
 		HttpClient api=new HttpClient();
 		return true;
-		
+
 	}
 	public boolean login(String username, String password) {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -98,7 +98,7 @@ public class UserOperation
 		db.close();
 		return success;
 	}
-	
+
 	public int getUserIdByUsername(String username) {
 
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -119,7 +119,7 @@ public class UserOperation
 
 		return userId;
 	}
-	
+
 	public boolean isUsernameExists(String username) {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(
@@ -131,8 +131,8 @@ public class UserOperation
 		db.close();
 		return exists;
 	}
-	
-	
+
+
 	//Those function manipulate record table for user
 	// Calculte the total mark user got throught all quiz
 	public int getOverallRank(int studentId) {
@@ -170,7 +170,7 @@ public class UserOperation
 		db.close();
 		return count;
 	}
-	
+
 	//Has already did the quiz
 	public boolean user_has_done(int quiz_id){
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -200,7 +200,4 @@ public class UserOperation
 	}
 }
 
-
-	
-	
 

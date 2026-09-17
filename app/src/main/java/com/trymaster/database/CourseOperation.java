@@ -10,23 +10,23 @@ import java.sql.*;
 
 public class CourseOperation
 {
-	
+
 	private SQLiteDatabase database;
 	private SQLiteOpenHelper dbHelper;
 
 	public CourseOperation(Context context) {
 		dbHelper = new DatabaseHelper(context);
-		
+
 	}
-	
-	
+
+
 	public long createCourse(String title,String desc) {
 		database = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("title", title);
 		values.put("description", desc);
 		//values.put("video_url", src);
-		
+
 		long k=database.insert("courses", null, values);
 		return k;
 	}
@@ -40,7 +40,7 @@ public class CourseOperation
 			course.setId(cursor.getInt(0));
 			course.setTitle(cursor.getString(1));
 			course.setDescription(cursor.getString(2));
-			course.setVideoUrl(cursor.getString(3));
+			//course.setVideoUrl(cursor.getString(3));
 			return course;
 		}
 		return null;
@@ -51,7 +51,7 @@ public class CourseOperation
 		ContentValues values = new ContentValues();
 		values.put("title", course.getTitle());
 		values.put("description", course.getDescription());
-		values.put("video_url", course.getVideoUrl());
+		//values.put("video_url", course.getVideoUrl());
 		return database.update("courses", values, "id = ?", new String[] {String.valueOf(course.getId())});
 	}
 
@@ -59,7 +59,7 @@ public class CourseOperation
 		database = dbHelper.getWritableDatabase();
 		database.delete("courses", "id = ?", new String[] {String.valueOf(id)});
 	}
-	
+
 	public List<Course> getAllCourses() {
 		List<Course> courses = new ArrayList<>();
 

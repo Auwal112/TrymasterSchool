@@ -1,93 +1,93 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
-    
-	<!-- Categories title -->
-    <TextView
-        android:id="@+id/tv_categories_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:text="Categories"
-        android:textColor="@color/text_primary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-         />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
 
-    <!-- Categories -->
-    <HorizontalScrollView
-        android:id="@+id/categories_scroll"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:scrollbars="none"
-        >
+	<TextView
+		android:id="@+id/tv_categories_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="20dp"
+		android:layout_marginTop="22dp"
+		android:text="Categories"
+		android:textColor="@color/text_primary"
+		android:textSize="18sp"
+		android:textStyle="bold"/>
 
-        <LinearLayout
-            android:id="@+id/categories_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+	<HorizontalScrollView
+		android:id="@+id/categories_scroll"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp"
+		android:scrollbars="none">
 
-            <TextView
-                android:id="@+id/category_math"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/category_background"
-                android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:text="Mathematics"
-                android:textColor="@color/primary"
-                android:textSize="13sp" />
+		<LinearLayout
+			android:id="@+id/categories_container"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:paddingStart="16dp"
+			android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/category_science"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/category_background"
-                android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:text="Science"
-                android:textColor="@color/primary"
-                android:textSize="13sp" />
+			<TextView
+				android:id="@+id/category_math"
+				android:layout_width="wrap_content"
+				android:layout_height="40dp"
+				android:layout_marginEnd="8dp"
+				android:background="@drawable/category_background"
+				android:gravity="center"
+				android:paddingStart="18dp"
+				android:paddingEnd="18dp"
+				android:text="Mathematics"
+				android:textColor="@color/primary"
+				android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/category_technology"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/category_background"
-                android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:text="Technology"
-                android:textColor="@color/primary"
-                android:textSize="13sp" />
+			<TextView
+				android:id="@+id/category_science"
+				android:layout_width="wrap_content"
+				android:layout_height="40dp"
+				android:layout_marginEnd="8dp"
+				android:background="@drawable/category_background"
+				android:gravity="center"
+				android:paddingStart="18dp"
+				android:paddingEnd="18dp"
+				android:text="Science"
+				android:textColor="@color/primary"
+				android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/category_english"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/category_background"
-                android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
-                android:text="English"
-                android:textColor="@color/primary"
-                android:textSize="13sp" />
+			<TextView
+				android:id="@+id/category_technology"
+				android:layout_width="wrap_content"
+				android:layout_height="40dp"
+				android:layout_marginEnd="8dp"
+				android:background="@drawable/category_background"
+				android:gravity="center"
+				android:paddingStart="18dp"
+				android:paddingEnd="18dp"
+				android:text="Technology"
+				android:textColor="@color/primary"
+				android:textSize="13sp"/>
 
-        </LinearLayout>
+			<TextView
+				android:id="@+id/category_english"
+				android:layout_width="wrap_content"
+				android:layout_height="40dp"
+				android:background="@drawable/category_background"
+				android:gravity="center"
+				android:paddingStart="18dp"
+				android:paddingEnd="18dp"
+				android:text="English"
+				android:textColor="@color/primary"
+				android:textSize="13sp"/>
 
-    </HorizontalScrollView>
+		</LinearLayout>
+
+	</HorizontalScrollView>
+
 	
-	
-	
+
 </LinearLayout>
+
+

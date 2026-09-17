@@ -1,231 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background">
 
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/home_toolbar"
+		android:layout_width="0dp"
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/primary"
+		android:elevation="4dp"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- =========================
-	CUSTOM TOOLBAR
-	========================= -->
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center_vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/home_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
-        android:elevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+			<TextView
+				android:id="@+id/tv_user_avatar"
+				android:layout_width="38dp"
+				android:layout_height="38dp"
+				android:gravity="center"
+				android:text="A"
+				android:textSize="17sp"
+				android:textStyle="bold"
+				android:textColor="@android:color/white"
+				android:background="@drawable/avatar_circle"/>
 
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical"
+				android:layout_marginStart="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+				<TextView
+					android:id="@+id/tv_username"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Auwalu"
+					android:textSize="16sp"
+					android:textStyle="bold"
+					android:textColor="@android:color/white"/>
 
+				<TextView
+					android:id="@+id/tv_greeting"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Good morning 👋"
+					android:textSize="12sp"
+					android:textColor="@android:color/white"
+					android:alpha="0.85"/>
 
-            <!-- AVATAR -->
+			</LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_user_avatar"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:gravity="center"
-                android:text="A"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/avatar_circle"/>
+			<ImageView
+				android:id="@+id/iv_notification"
+				android:layout_width="44dp"
+				android:layout_height="44dp"
+				android:padding="11dp"
+				android:src="@drawable/nav_menu_home"
+				android:contentDescription="Notifications"
+				android:clickable="true"
+				android:focusable="true"/>
 
+		</LinearLayout>
 
-            <!-- USER INFORMATION -->
+	</android.support.v7.widget.Toolbar>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp">
+	<android.support.v7.widget.CardView
+		android:id="@+id/continue_quiz_container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginBottom="6dp"
+		app:cardCornerRadius="16dp"
+		app:cardElevation="3dp"
+		app:layout_constraintTop_toBottomOf="@id/home_toolbar"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:background="#2878C3">
 
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="16dp"
+			android:background="@color/background">
 
-                <TextView
-                    android:id="@+id/tv_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Auwalu"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"/>
+			<TextView
+				android:id="@+id/tv_recommended_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Continue Your Last Quiz"
+				android:textSize="19sp"
+				android:textStyle="bold"
+				android:textColor="@color/text_primary"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"/>
 
+			<TextView
+				android:id="@+id/tv_continue_quiz_title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ellipsize="end"
+				android:maxLines="2"
+				android:text="Algebra Basics"
+				android:textColor="@color/text_primary"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"/>
 
-                <TextView
-                    android:id="@+id/tv_greeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Good morning 👋"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/white"
-                    android:alpha="0.85"/>
+			<Button
+				android:id="@+id/btn_continue_quiz"
+				android:layout_width="wrap_content"
+				android:layout_height="44dp"
+				android:text="Continue"
+				android:textAllCaps="false"
+				android:textColor="@android:color/white"
+				android:backgroundTint="@color/primary"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"/>
 
-            </LinearLayout>
-
-
-            <!-- NOTIFICATION -->
-
-            <ImageView
-                android:id="@+id/iv_notification"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="11dp"
-                android:src="@drawable/nav_menu_home"
-                android:contentDescription="Notifications"
-                android:clickable="true"
-                android:focusable="true"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.Toolbar>
-
-
-    <!-- =========================
-	CONTINUE QUIZ
-	========================= -->
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/continue_quiz_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="3dp"
-        app:layout_constraintTop_toBottomOf="@id/home_toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <!-- TITLE -->
-
-            <TextView
-                android:id="@+id/tv_continue_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Continue Quiz"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_secondary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-
-            <!-- QUIZ NAME -->
-
-            <TextView
-                android:id="@+id/tv_continue_quiz_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Mathematics — Algebra"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:layout_marginTop="6dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_continue_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-            <!-- QUESTION NUMBER -->
-
-            <TextView
-                android:id="@+id/tv_continue_quiz_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Question 6 of 10"
-                android:textSize="13sp"
-                android:textColor="@color/text_secondary"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_continue_quiz_title"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-
-            <!-- PROGRESS -->
-
-            <ProgressBar
-                android:id="@+id/progress_continue_quiz"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="7dp"
-                android:max="100"
-                android:progress="60"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_continue_quiz_progress"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-            <!-- PERCENTAGE -->
-
-            <TextView
-                android:id="@+id/tv_continue_percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="60% completed"
-                android:textSize="12sp"
-                android:textColor="@color/text_secondary"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/progress_continue_quiz"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-
-            <!-- CONTINUE BUTTON -->
-
-            <Button
-                android:id="@+id/btn_continue_quiz"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:text="Continue"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@color/primary"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_continue_percentage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </android.support.constraint.ConstraintLayout>
+		</LinearLayout>
 
 	</android.support.v7.widget.CardView>
 
-
-    <!-- =========================
-	RECOMMENDED QUIZZES
-	========================= -->
-
-    <TextView
-        android:id="@+id/tv_recommended_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recommended for You"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_primary"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/continue_quiz_container"
-        app:layout_constraintStart_toStartOf="parent"/>
-
+	<TextView
+		android:id="@+id/tv_recommended_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Recommended for You"
+		android:textSize="19sp"
+		android:textStyle="bold"
+		android:textColor="@color/text_primary"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="24dp"
+		app:layout_constraintTop_toBottomOf="@id/continue_quiz_container"
+		app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
 
