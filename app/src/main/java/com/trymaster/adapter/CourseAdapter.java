@@ -1,20 +1,18 @@
 package com.trymaster.adapter;
-import android.support.v7.widget.RecyclerView;
-import java.util.List;
-import com.trymaster.database.Course;
-import android.annotation.NonNull;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import com.trymaster.R;
+import android.annotation.*;
+import android.support.v7.widget.*;
+import android.view.*;
+import android.widget.*;
+import com.trymaster.*;
+import com.trymaster.database.*;
+import java.util.*;
 
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
-    private List<Course> courses;
+    private ArrayList<Course> courses;
 	private OnCourseListener onCourseListener;
 
-	public CourseAdapter(List<Course> courses,OnCourseListener listener) {
+	public CourseAdapter(ArrayList<Course> courses,OnCourseListener listener) {
 		this.courses = courses;
 		this.onCourseListener=listener;
 	}
@@ -29,8 +27,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 	@Override
 	public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
 		Course course = courses.get(position);
-		holder.courseTitle.setText(course.getTitle());
-		holder.courseDescription.setText(course.getDescription());
+        holder.title.setText(course.getTitle());
+        holder.description.setText(course.getDescription());
+
+        // Temporary simulated progress
+        int progress = 35;
+
+        holder.progressBar.setProgress(progress);
+        holder.progressText.setText(progress + "% complete");
+
+        // Temporary simulated topic count
+        holder.topics.setText("5 topics");
+		//holder.courseTitle.setText(course.getTitle());
+		//holder.courseDescription.setText(course.getDescription());
 		
 	}
 
@@ -40,14 +49,38 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 	}
 
 	public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-		public TextView courseTitle;
-		public TextView courseDescription;
+
+        TextView label;
+        TextView title;
+        TextView description;
+        TextView progressText;
+        TextView topics;
+      //  TextView continueButton;
+		
+		ProgressBar progressBar;
+		//public TextView courseTitle;
+		//public TextView courseDescription;
 		public OnCourseListener oncourselistener;
 
 		public CourseViewHolder(@NonNull View itemView,OnCourseListener p) {
             super(itemView);
-            courseTitle = itemView.findViewById(R.id.course_title);
-            courseDescription = itemView.findViewById(R.id.course_description);
+            //courseTitle = itemView.findViewById(R.id.course_title);
+          //  courseDescription = itemView.findViewById(R.id.course_description);
+			label = itemView.findViewById(R.id.course_label);
+            title = itemView.findViewById(R.id.course_title);
+            description = itemView.findViewById(R.id.course_description);
+
+            progressText =
+                itemView.findViewById(R.id.course_progress_text);
+
+            topics =
+                itemView.findViewById(R.id.course_topics);
+
+            progressBar =
+                itemView.findViewById(R.id.course_progress_bar);
+
+          //  continueButton = itemView.findViewById(R.id.course_continue);
+				
 			itemView.setOnClickListener(this);
 			oncourselistener=p;
 		}

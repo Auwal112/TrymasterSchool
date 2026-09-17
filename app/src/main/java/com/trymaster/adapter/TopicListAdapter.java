@@ -30,9 +30,41 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 	@Override
 	public void onBindViewHolder(@NonNull TopicViewHolder holder, int position) {
 		Topic topic = this.topic.get(position);
-		holder.topicTitle.setText(topic.getTitle());
-		holder.topicGoal.setText(topic.getGoal());
-		holder.topicIndex.setText(""+position);
+		
+
+		holder.number.setText(
+			String.format("%02d", position + 1)
+		);
+
+		holder.title.setText(topic.getTitle());
+		holder.goal.setText(topic.getGoal());
+
+		// Show/hide resources
+		if (topic.getVedioSource() == null ||
+			topic.getVedioSource().isEmpty()) {
+
+			holder.video.setVisibility(View.GONE);
+
+		} else {
+			holder.video.setVisibility(View.VISIBLE);
+		}
+
+		if (topic.getDocument_link() == null ||
+			topic.getDocument_link().isEmpty()) {
+
+			holder.document.setVisibility(View.GONE);
+
+		} else {
+			holder.document.setVisibility(View.VISIBLE);
+		}
+
+		if (topic.getQuiz_id() <= 0) {
+
+			holder.quiz.setVisibility(View.GONE);
+
+		} else {
+			holder.quiz.setVisibility(View.VISIBLE);
+		}
 		
 		
 	}
@@ -44,21 +76,29 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
 
 	public class TopicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 	{
-
-		
 		
 		public TextView topicTitle,topicGoal,topicIndex;
+		public TextView number,title,goal,video,document,quiz,status;
 
 		public OnTopicListener ontopicL;
+		
 		public TopicViewHolder(@NonNull View itemView,OnTopicListener otl) {
             super(itemView);
-            topicTitle = itemView.findViewById(R.id.topic_title);
-            topicGoal = itemView.findViewById(R.id.topic_goal);
-			topicIndex = itemView.findViewById(R.id.order);
-		
+			number = itemView.findViewById(R.id.topic_number);
+			title = itemView.findViewById(R.id.topic_title);
+			goal = itemView.findViewById(R.id.topic_goal);
+
+			video = itemView.findViewById(R.id.topic_video);
+			document = itemView.findViewById(R.id.topic_document);
+			quiz = itemView.findViewById(R.id.topic_quiz);
+
+			status = itemView.findViewById(R.id.topic_status);
 			itemView.setOnClickListener(this);
 			ontopicL=otl;
-		}
+
+			}
+
+		
 		
 		@Override
 		public void onClick(View p1)
@@ -74,3 +114,16 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.Topi
         void onTopicClick(int position);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+	
+	

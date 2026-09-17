@@ -1,5 +1,4 @@
 package com.trymaster.database;
-import java.security.*;
 
 public class Course
 {
